@@ -179,7 +179,7 @@ export function generatePdfHtml({ name, section, durationDays, routine }: PdfPro
   .badge-rev   { border-color: #16A34A; color: #16A34A; }
 
   .time { font-size: 7px; color: #888; margin-left: 3px; }
-  .check { float: right; font-size: 10px; color: #bbb; }
+  .check { font-size: 9px; color: #ccc; margin-left: 4px; }
 
   /* ── Footer ── */
   .footer {
@@ -220,7 +220,7 @@ function downloadPdf() {
     pagebreak: { mode: 'avoid-all' }
   };
 
-  html2pdf().set(opt).from(document.getElementById('routine-content')).save()
+  document.fonts.ready.then(() => html2pdf().set(opt).from(document.getElementById('routine-content')).save())
     .then(() => {
       btn.disabled = false;
       btn.textContent = '✅ আবার Download';

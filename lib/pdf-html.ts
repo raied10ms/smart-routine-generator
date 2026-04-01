@@ -93,15 +93,13 @@ export function generatePdfHtml({ name, section, durationDays, routine }: PdfPro
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* A4 at 96dpi = 794px. Body is exactly this width so html2canvas captures at A4 proportions. */
   html, body {
-    width: 794px;
-    max-width: 794px;
     font-family: 'Hind Siliguri', sans-serif;
     background: #fff;
     color: #111;
     font-size: 8.5px;
     line-height: 1.45;
+    overflow-x: hidden;
   }
 
   /* ── Toolbar (hidden in PDF) ── */
@@ -120,10 +118,11 @@ export function generatePdfHtml({ name, section, durationDays, routine }: PdfPro
   }
   .toolbar button:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  /* ── Content wrapper ── */
+  /* ── Content wrapper — 190mm = A4 minus 10mm margins each side ── */
   #routine-content {
-    padding: 14px 20px 20px;
-    margin-top: 44px;
+    width: 190mm;
+    padding: 0;
+    margin: 44px auto 0;
   }
 
   /* ── Header ── */
@@ -223,7 +222,7 @@ function downloadPdf() {
   status.textContent = 'PDF generate হচ্ছে, একটু অপেক্ষা করো...';
 
   const opt = {
-    margin: [8, 0, 8, 0],
+    margin: [10, 10, 10, 10],
     filename: 'SSC27-Smart-Routine-${name.replace(/\s+/g, "-")}.pdf',
     image: { type: 'jpeg', quality: 0.98 },
     html2canvas: {
@@ -232,7 +231,8 @@ function downloadPdf() {
       backgroundColor: '#ffffff',
       logging: false,
       letterRendering: true,
-      windowWidth: 794
+      scrollX: 0,
+      scrollY: 0
     },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
     pagebreak: { mode: ['css', 'legacy'], avoid: 'tr' }

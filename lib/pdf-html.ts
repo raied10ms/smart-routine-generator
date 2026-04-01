@@ -8,10 +8,10 @@ interface PdfProps {
   device: "mobile" | "desktop";
 }
 
-const phaseColors: Record<number, { bg: string; accent: string; name: string }> = {
-  1: { bg: "#E31E24", accent: "#FFD700", name: "ফাউন্ডেশন মোড 🏗️" },
-  2: { bg: "#D97706", accent: "#F59E0B", name: "প্র্যাকটিস গ্রাইন্ড 🔥" },
-  3: { bg: "#16A34A", accent: "#22C55E", name: "ফাইনাল রিভিশন 🎯" },
+const phaseLabels: Record<number, string> = {
+  1: "Phase 1 — ফাউন্ডেশন মোড",
+  2: "Phase 2 — প্র্যাকটিস গ্রাইন্ড",
+  3: "Phase 3 — ফাইনাল রিভিশন",
 };
 
 function groupBySubject(entries: RoutineEntry[]): Record<string, RoutineEntry[]> {
@@ -23,19 +23,19 @@ function groupBySubject(entries: RoutineEntry[]): Record<string, RoutineEntry[]>
   return grouped;
 }
 
-export function generatePdfHtml({ name, section, durationDays, routine, device }: PdfProps): string {
+export function generatePdfHtml({ name, section, durationDays, routine }: PdfProps): string {
   const totalHours = Math.round(routine.reduce((s, d) => s + d.totalTimeMin, 0) / 60);
-  const isCompact = device === "mobile";
 
   let currentPhase = 0;
   let daysHtml = "";
 
   for (const day of routine) {
-    // Phase banner
+    // Phase divider
     if (day.phase !== currentPhase) {
       currentPhase = day.phase;
-      const pc = phaseColors[day.phase] || phaseColors[1];
-      daysHtml += `<tr class="phase-banner"><td colspan="4" style="background:${pc.bg};color:white;font-weight:700;padding:6px 10px;font-size:${isCompact ? "10px" : "11px"};">${pc.name}</td></tr>`;
+      const label = phaseLabels[day.phase] || "";
+      const borderColor = day.phase === 1 ? "#E31E24" : day.phase === 2 ? "#D97706" : "#16A34A";
+      daysHtml += `<tr class="phase-row"><td colspan="4" style="border-left:3px solid ${borderColor};padding:5px 8px;font-weight:700;font-size:9px;color:${borderColor};background:#f8f8f8;">${label}</td></tr>`;
     }
 
     const grouped = groupBySubject(day.entries);
@@ -49,22 +49,21 @@ export function generatePdfHtml({ name, section, durationDays, routine, device }
       let firstChapter = true;
 
       for (const entry of chapters) {
-        daysHtml += `<tr class="${day.isExtreme ? "extreme" : ""} ${day.isWeekend ? "weekend" : ""}">`;
+        const rowClass = day.isExtreme ? "extreme-row" : day.isWeekend ? "weekend-row" : "";
+        daysHtml += `<tr class="${rowClass}">`;
 
-        // Day column — only on first row of this day
         if (firstSubject && firstChapter) {
           const rowspan = day.entries.length;
-          daysHtml += `<td class="day-col" rowspan="${rowspan}"><strong>${dayLabel}</strong><br><span class="hours">~${hours}h</span></td>`;
+          daysHtml += `<td class="day-col" rowspan="${rowspan}"><strong>${dayLabel}</strong><span class="hours">${hours}h</span></td>`;
         }
 
-        // Subject column — only on first row of this subject
         if (firstChapter) {
           daysHtml += `<td class="subject-col" rowspan="${chapters.length}"><strong>${subject}</strong></td>`;
         }
 
-        // Chapter + Type
+        const typeShort = entry.taskType.includes("CQ") ? "CQ" : entry.taskType.includes("MCQ") ? "MCQ" : entry.taskType.includes("গণিত") ? "Math" : "Rev";
         daysHtml += `<td class="chapter-col">${entry.chapterName}</td>`;
-        daysHtml += `<td class="type-col"><span class="badge badge-${entry.taskType.includes("CQ") ? "cq" : entry.taskType.includes("MCQ") ? "mcq" : entry.taskType.includes("গণিত") ? "math" : "rev"}">${entry.taskType}</span> <span class="time">${entry.timeMin}m</span></td>`;
+        daysHtml += `<td class="type-col"><span class="badge badge-${typeShort.toLowerCase()}">${entry.taskType}</span> <span class="time">${entry.timeMin}m</span><span class="check">☐</span></td>`;
         daysHtml += `</tr>`;
 
         firstChapter = false;
@@ -77,149 +76,188 @@ export function generatePdfHtml({ name, section, durationDays, routine, device }
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SSC 27 Smart Routine — ${name}</title>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
     font-family: 'Hind Siliguri', sans-serif;
-    background: #4A1520;
-    color: white;
-    font-size: ${isCompact ? "8px" : "9px"};
-    line-height: 1.4;
-    padding: 12px;
-  }
-  .header {
-    background: #E31E24;
-    border-radius: 6px;
-    padding: 10px 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  .header h1 { font-size: ${isCompact ? "14px" : "16px"}; font-weight: 700; }
-  .header .sub { font-size: ${isCompact ? "8px" : "9px"}; opacity: 0.8; margin-top: 2px; }
-  .header .right { text-align: right; }
-  .header .name { font-size: ${isCompact ? "10px" : "11px"}; font-weight: 600; }
-
-  .summary {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 8px;
-  }
-  .summary-card {
-    flex: 1;
-    background: rgba(255,255,255,0.1);
-    border-radius: 4px;
-    padding: 4px 8px;
-  }
-  .summary-card .label { font-size: 6px; color: rgba(255,255,255,0.6); }
-  .summary-card .value { font-size: 11px; font-weight: 700; color: #FFD700; }
-
-  table { width: 100%; border-collapse: collapse; }
-  th {
-    background: rgba(255,255,255,0.15);
-    padding: 4px 6px;
-    text-align: left;
-    font-size: ${isCompact ? "7px" : "8px"};
-    font-weight: 700;
-  }
-  td {
-    padding: 3px 6px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    vertical-align: top;
-  }
-  tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
-  tr.extreme td { border-left: 2px solid #FFD700; }
-  tr.weekend td { opacity: 0.85; }
-
-  .day-col { width: ${isCompact ? "12%" : "10%"}; white-space: nowrap; }
-  .subject-col { width: ${isCompact ? "22%" : "20%"}; }
-  .chapter-col { width: ${isCompact ? "36%" : "40%"}; color: rgba(255,255,255,0.8); }
-  .type-col { width: ${isCompact ? "30%" : "30%"}; white-space: nowrap; }
-
-  .hours { font-size: 7px; color: rgba(255,255,255,0.5); }
-
-  .badge {
-    display: inline-block;
-    padding: 1px 4px;
-    border-radius: 3px;
-    font-size: ${isCompact ? "6.5px" : "7px"};
-    font-weight: 600;
-  }
-  .badge-cq { background: rgba(239,68,68,0.3); color: #fca5a5; }
-  .badge-mcq { background: rgba(245,158,11,0.3); color: #fcd34d; }
-  .badge-math { background: rgba(59,130,246,0.3); color: #93c5fd; }
-  .badge-rev { background: rgba(34,197,94,0.3); color: #86efac; }
-
-  .time { font-size: 7px; color: rgba(255,255,255,0.6); }
-
-  .footer {
-    margin-top: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 7px;
-    color: rgba(255,255,255,0.4);
-  }
-  .footer .cta {
-    background: #E31E24;
-    color: white;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-weight: 600;
-    font-size: 8px;
+    background: #fff;
+    color: #111;
+    font-size: 8.5px;
+    line-height: 1.45;
   }
 
-  .print-bar {
+  /* ── Toolbar (hidden in PDF) ── */
+  .toolbar {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: #111; color: white; padding: 10px 16px;
+    background: #111; color: white; padding: 10px 20px;
     display: flex; justify-content: space-between; align-items: center;
-    font-size: 13px;
+    font-size: 13px; font-family: 'Hind Siliguri', sans-serif;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   }
-  .print-bar button {
-    background: #E31E24; color: white; border: none; padding: 8px 20px;
-    border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer;
+  .toolbar .info { opacity: 0.75; font-size: 12px; }
+  .toolbar button {
+    background: #E31E24; color: white; border: none; padding: 9px 22px;
+    border-radius: 6px; font-weight: 700; font-size: 13px; cursor: pointer;
     font-family: 'Hind Siliguri', sans-serif;
   }
-  .print-bar button:hover { opacity: 0.9; }
-  body { padding-top: 50px; }
+  .toolbar button:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  @media print {
-    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; padding-top: 0; }
-    .print-bar { display: none; }
+  /* ── Content wrapper ── */
+  #routine-content {
+    padding: 16px 18px;
+    margin-top: 44px;
   }
+
+  /* ── Header ── */
+  .header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    border-bottom: 2px solid #E31E24; padding-bottom: 8px; margin-bottom: 8px;
+  }
+  .header-left .title {
+    font-size: 15px; font-weight: 700; color: #E31E24; letter-spacing: 0.3px;
+  }
+  .header-left .sub { font-size: 8px; color: #555; margin-top: 2px; }
+  .header-right { text-align: right; }
+  .header-right .name { font-size: 11px; font-weight: 700; }
+  .header-right .sub2 { font-size: 8px; color: #555; }
+
+  /* ── Summary bar ── */
+  .summary {
+    display: flex; gap: 8px; margin-bottom: 10px;
+    border: 1px solid #e5e5e5; border-radius: 5px; overflow: hidden;
+  }
+  .summary-item {
+    flex: 1; padding: 5px 8px; border-right: 1px solid #e5e5e5;
+  }
+  .summary-item:last-child { border-right: none; }
+  .summary-item .s-label { font-size: 6.5px; color: #888; text-transform: uppercase; letter-spacing: 0.4px; }
+  .summary-item .s-value { font-size: 12px; font-weight: 700; color: #111; }
+
+  /* ── Table ── */
+  table { width: 100%; border-collapse: collapse; }
+
+  thead tr th {
+    background: #111; color: white;
+    padding: 4px 6px; text-align: left;
+    font-size: 7.5px; font-weight: 700; letter-spacing: 0.3px;
+  }
+
+  td {
+    padding: 3px 6px;
+    border-bottom: 1px solid #ebebeb;
+    vertical-align: top;
+  }
+
+  tr:nth-child(even) td { background: #fafafa; }
+  .extreme-row td { border-left: 2px solid #E31E24; }
+  .weekend-row td { color: #555; }
+
+  .day-col {
+    width: 10%; white-space: nowrap;
+    font-weight: 700; font-size: 8px;
+  }
+  .hours {
+    display: block; font-size: 7px; font-weight: 400; color: #888;
+  }
+  .subject-col { width: 20%; font-size: 8px; }
+  .chapter-col { width: 40%; color: #333; }
+  .type-col { width: 30%; white-space: nowrap; }
+
+  .badge {
+    display: inline-block; padding: 1px 4px; border-radius: 2px;
+    font-size: 7px; font-weight: 700; border: 1px solid;
+  }
+  /* B&W friendly — uses borders + patterns, no fill colors */
+  .badge-cq    { border-color: #E31E24; color: #E31E24; }
+  .badge-mcq   { border-color: #D97706; color: #D97706; }
+  .badge-math  { border-color: #1d4ed8; color: #1d4ed8; }
+  .badge-rev   { border-color: #16A34A; color: #16A34A; }
+
+  .time { font-size: 7px; color: #888; margin-left: 3px; }
+  .check { float: right; font-size: 10px; color: #bbb; }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: 12px; padding-top: 8px; border-top: 1px solid #e5e5e5;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 7px; color: #aaa;
+  }
+  .footer .cta { color: #E31E24; font-weight: 700; font-size: 8px; }
 </style>
 </head>
 <body>
-  <div class="print-bar">
-    <span>📄 তোমার রুটিন তৈরি হয়েছে — PDF সেভ করো!</span>
-    <button onclick="window.print()">🖨️ Save as PDF</button>
-  </div>
+
+<div class="toolbar">
+  <span class="info" id="status">📄 তোমার রুটিন তৈরি হয়েছে — নিচের বাটনে ক্লিক করে PDF সেভ করো</span>
+  <button id="dlBtn" onclick="downloadPdf()">⬇️ PDF Download করো</button>
+</div>
+
+<script>
+function downloadPdf() {
+  const btn = document.getElementById('dlBtn');
+  const status = document.getElementById('status');
+  btn.disabled = true;
+  btn.textContent = '⏳ তৈরি হচ্ছে...';
+  status.textContent = 'PDF generate হচ্ছে, একটু অপেক্ষা করো...';
+
+  const opt = {
+    margin: [10, 10, 10, 10],
+    filename: 'SSC27-Smart-Routine-${name.replace(/\s+/g, "-")}.pdf',
+    image: { type: 'jpeg', quality: 0.97 },
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: '#ffffff',
+      logging: false,
+      letterRendering: true
+    },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    pagebreak: { mode: 'avoid-all' }
+  };
+
+  html2pdf().set(opt).from(document.getElementById('routine-content')).save()
+    .then(() => {
+      btn.disabled = false;
+      btn.textContent = '✅ আবার Download';
+      status.textContent = 'PDF সেভ হয়েছে! ফাইলটি তোমার Downloads ফোল্ডারে পাবে।';
+    }).catch(() => {
+      btn.disabled = false;
+      btn.textContent = '⬇️ PDF Download করো';
+      status.textContent = '❌ সমস্যা হয়েছে, আবার চেষ্টা করো।';
+    });
+}
+</script>
+
+<div id="routine-content">
   <div class="header">
-    <div>
-      <h1>SSC 27 SMART ROUTINE</h1>
-      <div class="sub">${section} | ${durationDays} দিন</div>
+    <div class="header-left">
+      <div class="title">SSC 27 SMART ROUTINE</div>
+      <div class="sub">10 Minute School · ${section} · ${durationDays} দিন</div>
     </div>
-    <div class="right">
+    <div class="header-right">
       <div class="name">${name}</div>
-      <div class="sub">10 Minute School</div>
+      <div class="sub2">Generated by 10MS Smart Routine</div>
     </div>
   </div>
 
   <div class="summary">
-    <div class="summary-card"><div class="label">মোট দিন</div><div class="value">${durationDays}</div></div>
-    <div class="summary-card"><div class="label">মোট সময়</div><div class="value">~${totalHours}h</div></div>
-    <div class="summary-card"><div class="label">বিভাগ</div><div class="value">${section}</div></div>
+    <div class="summary-item"><div class="s-label">মোট দিন</div><div class="s-value">${durationDays}</div></div>
+    <div class="summary-item"><div class="s-label">মোট সময়</div><div class="s-value">~${totalHours}h</div></div>
+    <div class="summary-item"><div class="s-label">বিভাগ</div><div class="s-value">${section}</div></div>
   </div>
 
   <table>
     <thead>
       <tr>
-        <th>দিন</th>
+        <th>DAY</th>
         <th>বিষয়</th>
         <th>অধ্যায়</th>
-        <th>ধরন / সময়</th>
+        <th>ধরন / সময় / ✓</th>
       </tr>
     </thead>
     <tbody>
@@ -228,9 +266,11 @@ export function generatePdfHtml({ name, section, durationDays, routine, device }
   </table>
 
   <div class="footer">
-    <span>10 Minute School Smart Routine Generator</span>
+    <span>10 Minute School Smart Routine Generator · ssc.10minuteschool.com</span>
     <span class="cta">SSC 27 Complete Prep — এখনই ভর্তি হও!</span>
   </div>
+</div>
+
 </body>
 </html>`;
 }

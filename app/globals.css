@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --color-primary: #E31E24;
+  --color-primary-light: #FFF0F0;
+  --color-secondary: #111111;
+  --color-text: #333333;
+  --color-text-muted: #888888;
+  --color-bg: #FFFFFF;
+  --color-surface: #F5F5F5;
+  --color-border: #E5E5E5;
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-gray: #9CA3AF;
+
+  --radius-pill: 9999px;
+  --radius-card: 12px;
+  --radius-button: 10px;
+  --shadow-card: 0 1px 4px rgba(0,0,0,0.08);
+  --padding-page: 16px;
+}
+
+body {
+  font-family: 'Hind Siliguri', sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Staggered fade-in for routine days */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Subtle pulse for hero CTA */
+@keyframes pulseSubtle {
+  0%, 100% {
+    box-shadow: 0 4px 14px rgba(227, 30, 36, 0.15);
+  }
+  50% {
+    box-shadow: 0 4px 24px rgba(227, 30, 36, 0.35);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 2.5s ease-in-out infinite;
+}

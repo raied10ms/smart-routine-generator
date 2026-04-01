@@ -1,0 +1,436 @@
+section,subject,chapter_number,chapter_name_bn,chapter_name_en,question_type,cq_importance,mcq_importance,math_importance,time_cq_min,time_mcq_min,time_math_min,time_revision_min
+বিজ্ঞান,পদার্থবিজ্ঞান,1,ভৌত রাশি ও পরিমাপ,Physical Quantities and Measurement,CQ+MCQ,3,4,0,45,25,0,15
+বিজ্ঞান,পদার্থবিজ্ঞান,2,গতি,Motion,CQ+MCQ,5,5,0,75,35,0,25
+বিজ্ঞান,পদার্থবিজ্ঞান,3,বল,Force,CQ+MCQ,5,5,0,75,35,0,25
+বিজ্ঞান,পদার্থবিজ্ঞান,4,কাজ ক্ষমতা ও শক্তি,Work Power and Energy,CQ+MCQ,5,5,0,70,30,0,25
+বিজ্ঞান,পদার্থবিজ্ঞান,5,পদার্থের অবস্থা ও চাপ,States of Matter and Pressure,CQ+MCQ,4,4,0,60,30,0,20
+বিজ্ঞান,পদার্থবিজ্ঞান,6,বস্তুর উপর তাপের প্রভাব,Effect of Heat on Matter,CQ+MCQ,3,4,0,55,25,0,20
+বিজ্ঞান,পদার্থবিজ্ঞান,7,তরঙ্গ ও শব্দ,Waves and Sound,CQ+MCQ,4,4,0,60,30,0,20
+বিজ্ঞান,পদার্থবিজ্ঞান,8,আলোর প্রতিফলন,Reflection of Light,CQ+MCQ,5,5,0,70,35,0,25
+বিজ্ঞান,পদার্থবিজ্ঞান,9,আলোর প্রতিসরণ,Refraction of Light,CQ+MCQ,4,4,0,65,30,0,20
+বিজ্ঞান,পদার্থবিজ্ঞান,10,স্থির তড়িৎ,Static Electricity,CQ+MCQ,5,5,0,70,35,0,25
+বিজ্ঞান,পদার্থবিজ্ঞান,11,চল তড়িৎ,Current Electricity,CQ+MCQ,5,5,0,75,35,0,25
+বিজ্ঞান,পদার্থবিজ্ঞান,12,তড়িতের চৌম্বক ক্রিয়া,Magnetic Effect of Electricity,CQ+MCQ,3,4,0,55,25,0,20
+বিজ্ঞান,পদার্থবিজ্ঞান,13,আধুনিক পদার্থবিজ্ঞান ও ইলেকট্রনিক্স,Modern Physics and Electronics,CQ+MCQ,3,3,0,50,25,0,15
+বিজ্ঞান,রসায়ন,1,রসায়নের ধারণা,Concepts of Chemistry,CQ+MCQ,3,4,0,45,25,0,15
+বিজ্ঞান,রসায়ন,2,পদার্থের অবস্থা,States of Matter,CQ+MCQ,4,4,0,55,30,0,20
+বিজ্ঞান,রসায়ন,3,পদার্থের গঠন,Structure of Matter,CQ+MCQ,5,5,0,70,35,0,25
+বিজ্ঞান,রসায়ন,4,পর্যায় সারণি,Periodic Table,CQ+MCQ,5,5,0,65,35,0,25
+বিজ্ঞান,রসায়ন,5,রাসায়নিক বন্ধন,Chemical Bonding,CQ+MCQ,5,5,0,70,35,0,25
+বিজ্ঞান,রসায়ন,6,মোলের ধারণা ও রাসায়নিক গণনা,Mole Concept and Chemical Calculations,CQ+MCQ,5,5,0,75,35,0,25
+বিজ্ঞান,রসায়ন,7,রাসায়নিক বিক্রিয়া,Chemical Reactions,CQ+MCQ,5,5,0,70,30,0,25
+বিজ্ঞান,রসায়ন,8,রসায়ন ও শক্তি,Chemistry and Energy,CQ+MCQ,3,4,0,55,25,0,20
+বিজ্ঞান,রসায়ন,9,এসিড-ক্ষারক সমতা,Acid-Base Equilibrium,CQ+MCQ,4,5,0,60,30,0,20
+বিজ্ঞান,রসায়ন,10,খনিজ সম্পদ: ধাতু-অধাতু,Mineral Resources: Metals and Non-metals,CQ+MCQ,3,4,0,50,25,0,20
+বিজ্ঞান,রসায়ন,11,খনিজ সম্পদ: জীবাশ্ম,Mineral Resources: Fossils,CQ+MCQ,2,3,0,45,20,0,15
+বিজ্ঞান,রসায়ন,12,আমাদের জীবনে রসায়ন,Chemistry in Our Daily Life,CQ+MCQ,2,3,0,45,20,0,15
+বিজ্ঞান,জীববিজ্ঞান,1,জীবন পাঠ,Lessons of Life,CQ+MCQ,4,4,0,55,30,0,20
+বিজ্ঞান,জীববিজ্ঞান,2,জীবকোষ ও টিস্যু,Cell and Tissue,CQ+MCQ,5,5,0,65,35,0,25
+বিজ্ঞান,জীববিজ্ঞান,3,কোষ বিভাজন,Cell Division,CQ+MCQ,5,5,0,65,35,0,25
+বিজ্ঞান,জীববিজ্ঞান,4,জীবনীশক্তি,Bioenergetics,CQ+MCQ,4,4,0,60,30,0,20
+বিজ্ঞান,জীববিজ্ঞান,5,"খাদ্য, পুষ্টি এবং পরিপাক","Food, Nutrition and Digestion",CQ+MCQ,5,5,0,70,35,0,25
+বিজ্ঞান,জীববিজ্ঞান,6,পরিবহন,Transportation in Living Organisms,CQ+MCQ,4,4,0,60,30,0,20
+বিজ্ঞান,জীববিজ্ঞান,7,গ্যাসীয় বিনিময়,Gaseous Exchange,CQ+MCQ,4,4,0,55,30,0,20
+বিজ্ঞান,জীববিজ্ঞান,8,মানব রেচন,Human Excretion,CQ+MCQ,3,4,0,50,25,0,20
+বিজ্ঞান,জীববিজ্ঞান,9,দৃঢ়তা প্রদান ও চলন,Support and Movement,CQ+MCQ,3,3,0,50,25,0,15
+বিজ্ঞান,জীববিজ্ঞান,10,সমন্বয়,Coordination,CQ+MCQ,4,4,0,60,30,0,20
+বিজ্ঞান,জীববিজ্ঞান,11,জীবের প্রজনন,Reproduction,CQ+MCQ,5,5,0,65,35,0,25
+বিজ্ঞান,জীববিজ্ঞান,12,জীবের বংশগতি ও বিবর্তন,Heredity and Evolution,CQ+MCQ,4,5,0,60,30,0,20
+বিজ্ঞান,জীববিজ্ঞান,13,জীবের পরিবেশ,Organism and Environment,CQ+MCQ,3,3,0,45,25,0,15
+বিজ্ঞান,জীববিজ্ঞান,14,জীবপ্রযুক্তি,Biotechnology,CQ+MCQ,3,4,0,45,25,0,15
+বিজ্ঞান,উচ্চতর গণিত,1,সেট ও ফাংশন,Sets and Functions,Math,0,4,5,0,30,75,25
+বিজ্ঞান,উচ্চতর গণিত,2,বীজগাণিতিক রাশি,Algebraic Expressions,Math,0,4,5,0,25,70,25
+বিজ্ঞান,উচ্চতর গণিত,3,জ্যামিতি,Geometry,Math,0,4,5,0,30,80,25
+বিজ্ঞান,উচ্চতর গণিত,4,জ্যামিতিক অঙ্কন,Geometric Construction,Math,0,3,4,0,20,60,20
+বিজ্ঞান,উচ্চতর গণিত,5,সমীকরণ,Equations,Math,0,5,5,0,30,80,25
+বিজ্ঞান,উচ্চতর গণিত,6,অসমতা,Inequality,Math,0,3,4,0,25,60,20
+বিজ্ঞান,উচ্চতর গণিত,7,অসীম ধারা,Infinite Series,Math,0,4,4,0,25,65,20
+বিজ্ঞান,উচ্চতর গণিত,8,ত্রিকোণমিতি,Trigonometry,Math,0,5,5,0,30,85,25
+বিজ্ঞান,উচ্চতর গণিত,9,সূচকীয় ও লগারিদমীয় ফাংশন,Exponential and Logarithmic Functions,Math,0,4,5,0,25,75,25
+বিজ্ঞান,উচ্চতর গণিত,10,দ্বিপদী বিস্তৃতি,Binomial Expansion,Math,0,4,4,0,25,65,20
+বিজ্ঞান,উচ্চতর গণিত,11,স্থানাঙ্ক জ্যামিতি,Coordinate Geometry,Math,0,4,5,0,30,80,25
+বিজ্ঞান,উচ্চতর গণিত,12,সমতলীয় ভেক্টর,Planar Vectors,Math,0,3,4,0,25,60,20
+বিজ্ঞান,উচ্চতর গণিত,13,ঘনজ্যামিতি,Solid Geometry,Math,0,3,4,0,25,65,20
+বিজ্ঞান,উচ্চতর গণিত,14,সম্ভাবনা,Probability,Math,0,4,4,0,25,60,20
+বিজ্ঞান,বাংলা ১ম পত্র,1,সুভা (রবীন্দ্রনাথ ঠাকুর),Subha (Rabindranath Tagore),CQ+MCQ,4,4,0,60,25,0,20
+বিজ্ঞান,বাংলা ১ম পত্র,2,বই পড়া (প্রমথ চৌধুরী),Boi Pora (Pramatha Chowdhury),CQ+MCQ,3,3,0,55,25,0,15
+বিজ্ঞান,বাংলা ১ম পত্র,3,আম-আঁটির ভেঁপু (বিভূতিভূষণ বন্দ্যোপাধ্যায়),Am-Antir Venpu (Bibhutibhushan),CQ+MCQ,4,4,0,55,25,0,20
+বিজ্ঞান,বাংলা ১ম পত্র,4,মানুষ মুহম্মদ (সা.) (মোহাম্মদ ওয়াজেদ আলী),Manush Muhammad (Wajed Ali),CQ+MCQ,3,3,0,50,20,0,15
+বিজ্ঞান,বাংলা ১ম পত্র,5,নিমগাছ (বনফুল),Nimgachh (Banaphul),CQ+MCQ,3,3,0,45,20,0,15
+বিজ্ঞান,বাংলা ১ম পত্র,6,শিক্ষা ও মনুষ্যত্ব (মোতাহের হোসেন চৌধুরী),Shikkha O Monushyotto,CQ+MCQ,4,4,0,55,25,0,20
+বিজ্ঞান,বাংলা ১ম পত্র,7,প্রবাস বন্ধু (সৈয়দ মুজতবা আলী),Probash Bondhu (Mujtaba Ali),CQ+MCQ,3,3,0,50,20,0,15
+বিজ্ঞান,বাংলা ১ম পত্র,8,মমতাদি (মানিক বন্দ্যোপাধ্যায়),Momotadi (Manik Bandyopadhyay),CQ+MCQ,4,4,0,55,25,0,20
+বিজ্ঞান,বাংলা ১ম পত্র,9,একাত্তরের দিনগুলি (জাহানারা ইমাম),Ekattorer Dinguli (Jahanara Imam),CQ+MCQ,5,4,0,60,25,0,20
+বিজ্ঞান,বাংলা ১ম পত্র,10,সাহিত্যের রূপ ও রীতি (হায়াৎ মামুদ),Sahityer Rup O Riti (Hayat Mamud),CQ+MCQ,2,3,0,45,20,0,15
+বিজ্ঞান,বাংলা ১ম পত্র,11,বঙ্গবাণী (আবদুল হাকিম),Bangabani (Abdul Hakim) - Poetry,CQ+MCQ,4,4,0,55,25,0,20
+বিজ্ঞান,বাংলা ১ম পত্র,12,কপোতাক্ষ নদ (মাইকেল মধুসূদন দত্ত),Kapotakkho Nod (Michael Madhusudan) - Poetry,CQ+MCQ,5,5,0,60,30,0,20
+বিজ্ঞান,বাংলা ১ম পত্র,13,জীবন-সঙ্গীত (হেমচন্দ্র বন্দ্যোপাধ্যায়),Jibon Songit (Hemchandra) - Poetry,CQ+MCQ,3,3,0,50,20,0,15
+বিজ্ঞান,বাংলা ১ম পত্র,14,মানুষ (কাজী নজরুল ইসলাম),Manush (Kazi Nazrul Islam) - Poetry,CQ+MCQ,5,5,0,60,30,0,25
+বিজ্ঞান,বাংলা ১ম পত্র,15,সেইদিন এই মাঠ (জীবনানন্দ দাশ),Seidin Ei Math (Jibanananda Das) - Poetry,CQ+MCQ,3,3,0,50,20,0,15
+বিজ্ঞান,বাংলা ১ম পত্র,16,পল্লিজননী (জসীমউদ্দীন),Pollijononee (Jasimuddin) - Poetry,CQ+MCQ,4,4,0,55,25,0,20
+বিজ্ঞান,বাংলা ১ম পত্র,17,রানার (সুকান্ত ভট্টাচার্য),Ranar (Sukanta Bhattacharya) - Poetry,CQ+MCQ,3,3,0,50,20,0,15
+বিজ্ঞান,বাংলা ১ম পত্র,18,তোমাকে পাওয়ার জন্যে হে স্বাধীনতা (শামসুর রাহমান),Tomake Pawar Jonno He Shadhinota (Shamsur Rahman) - Poetry,CQ+MCQ,5,5,0,60,30,0,25
+বিজ্ঞান,বাংলা ১ম পত্র,19,আমার পরিচয় (সৈয়দ শামসুল হক),Amar Porichoy (Syed Shamsul Haq) - Poetry,CQ+MCQ,4,4,0,55,25,0,20
+বিজ্ঞান,বাংলা ১ম পত্র,20,"স্বাধীনতা, এই শব্দটি কীভাবে আমাদের হলো (নির্মলেন্দু গুণ)",Shadhinota Ei Shobdoti (Nirmalendu Goon) - Poetry,CQ+MCQ,4,5,0,55,25,0,20
+বিজ্ঞান,বাংলা ২য় পত্র,1,ভাষা,Language,CQ+MCQ,3,4,0,45,25,0,15
+বিজ্ঞান,বাংলা ২য় পত্র,2,বর্ণ প্রকরণ,Phonology,CQ+MCQ,3,4,0,45,25,0,15
+বিজ্ঞান,বাংলা ২য় পত্র,3,শব্দ প্রকরণ,Word Formation,CQ+MCQ,4,5,0,50,30,0,20
+বিজ্ঞান,বাংলা ২য় পত্র,4,পদ প্রকরণ,Parts of Speech,CQ+MCQ,5,5,0,55,30,0,20
+বিজ্ঞান,বাংলা ২য় পত্র,5,বাক্য প্রকরণ,Sentence Structure,CQ+MCQ,4,4,0,50,25,0,20
+বিজ্ঞান,বাংলা ২য় পত্র,6,বানান ও বিরাম চিহ্ন,Spelling and Punctuation,CQ+MCQ,3,4,0,40,25,0,15
+বিজ্ঞান,বাংলা ২য় পত্র,7,বাগধারা ও প্রবাদ-প্রবচন,Idioms and Proverbs,CQ+MCQ,3,5,0,40,30,0,15
+বিজ্ঞান,বাংলা ২য় পত্র,8,সারাংশ ও সারমর্ম,Summary Writing,CQ+MCQ,4,3,0,55,20,0,20
+বিজ্ঞান,বাংলা ২য় পত্র,9,ভাব-সম্প্রসারণ,Idea Expansion,CQ+MCQ,4,2,0,55,15,0,20
+বিজ্ঞান,বাংলা ২য় পত্র,10,পত্র লিখন,Letter Writing,CQ+MCQ,5,2,0,60,15,0,20
+বিজ্ঞান,বাংলা ২য় পত্র,11,প্রবন্ধ রচনা,Essay Writing,CQ+MCQ,5,2,0,75,15,0,25
+বিজ্ঞান,English 1st Paper,1,People Who Make a Difference,People Who Make a Difference,English-1,4,4,0,50,25,0,20
+বিজ্ঞান,English 1st Paper,2,Pastimes,Pastimes,English-1,3,3,0,45,25,0,15
+বিজ্ঞান,English 1st Paper,3,Events and Festivals,Events and Festivals,English-1,3,4,0,45,25,0,15
+বিজ্ঞান,English 1st Paper,4,Are We Aware?,Are We Aware?,English-1,4,4,0,50,25,0,20
+বিজ্ঞান,English 1st Paper,5,Nature and Environment,Nature and Environment,English-2,4,4,0,50,25,0,20
+বিজ্ঞান,English 1st Paper,6,Health and Hygiene,Health and Hygiene,English-2,3,3,0,45,25,0,15
+বিজ্ঞান,English 1st Paper,7,Human Rights,Human Rights,English-1,3,3,0,45,20,0,15
+বিজ্ঞান,English 1st Paper,8,Dreams,Dreams,English-1,3,3,0,45,20,0,15
+বিজ্ঞান,English 1st Paper,9,Food and Nutrition,Food and Nutrition,English-1,3,3,0,45,25,0,15
+বিজ্ঞান,English 1st Paper,10,Adolescence and Social Values,Adolescence and Social Values,English-1,4,4,0,50,25,0,20
+বিজ্ঞান,English 2nd Paper,1,Tenses and Right Forms of Verbs,Tenses and Right Forms of Verbs,English-2,5,5,0,60,35,0,25
+বিজ্ঞান,English 2nd Paper,2,Prepositions and Articles,Prepositions and Articles,English-2,4,5,0,50,30,0,20
+বিজ্ঞান,English 2nd Paper,3,Transformation of Sentences,Transformation of Sentences,English-2,5,4,0,55,30,0,20
+বিজ্ঞান,English 2nd Paper,4,Narration and Voice Change,Narration and Voice Change,English-2,5,5,0,60,35,0,25
+বিজ্ঞান,English 2nd Paper,5,Subject-Verb Agreement,Subject-Verb Agreement,English-2,3,4,0,40,25,0,15
+বিজ্ঞান,English 2nd Paper,6,Paragraph Writing,Paragraph Writing,English-3,5,0,0,65,0,0,25
+বিজ্ঞান,English 2nd Paper,7,Composition and Letter Writing,Composition and Letter Writing,English-3,5,0,0,70,0,0,25
+বিজ্ঞান,English 2nd Paper,8,Completing Story and Dialogue,Completing Story and Dialogue Writing,English-3,4,0,0,55,0,0,20
+বিজ্ঞান,English 2nd Paper,9,Graph and Chart Description,Graph and Chart Description,English-4,3,0,0,45,0,0,15
+বিজ্ঞান,English 2nd Paper,10,Email and CV Writing,Email and CV Writing,English-4,3,0,0,45,0,0,15
+বিজ্ঞান,তথ্য ও যোগাযোগ প্রযুক্তি,1,তথ্য ও যোগাযোগ প্রযুক্তি এবং আমাদের বাংলাদেশ,ICT and Our Bangladesh,MCQ-only,0,5,0,0,40,0,20
+বিজ্ঞান,তথ্য ও যোগাযোগ প্রযুক্তি,2,কম্পিউটার ও কম্পিউটার ব্যবহারকারীর নিরাপত্তা,Computer and User Safety,MCQ-only,0,4,0,0,35,0,20
+বিজ্ঞান,তথ্য ও যোগাযোগ প্রযুক্তি,3,আমার শিক্ষায় ইন্টারনেট,Internet in My Education,MCQ-only,0,4,0,0,35,0,15
+বিজ্ঞান,তথ্য ও যোগাযোগ প্রযুক্তি,4,আমার লেখালেখি ও হিসাব,My Writing and Calculations,MCQ-only,0,4,0,0,35,0,15
+বিজ্ঞান,তথ্য ও যোগাযোগ প্রযুক্তি,5,মাল্টিমিডিয়া ও গ্রাফিক্স,Multimedia and Graphics,MCQ-only,0,3,0,0,30,0,15
+বিজ্ঞান,তথ্য ও যোগাযোগ প্রযুক্তি,6,ডেটাবেজের ব্যবহার,Use of Database,MCQ-only,0,4,0,0,35,0,15
+বিজ্ঞান,বাংলাদেশ ও বিশ্বপরিচয়,1,পূর্ব বাংলার আন্দোলন ও বাংলাদেশের অভ্যুদয়,Movements of East Bengal and Emergence of Bangladesh,CQ+MCQ,5,5,0,65,30,0,25
+বিজ্ঞান,বাংলাদেশ ও বিশ্বপরিচয়,2,স্বাধীন বাংলাদেশ,Independent Bangladesh,CQ+MCQ,4,4,0,55,25,0,20
+বিজ্ঞান,বাংলাদেশ ও বিশ্বপরিচয়,3,বাংলাদেশের সম্পদ,Resources of Bangladesh,CQ+MCQ,3,4,0,50,25,0,15
+বিজ্ঞান,বাংলাদেশ ও বিশ্বপরিচয়,4,বাংলাদেশের অর্থনীতি,Economy of Bangladesh,CQ+MCQ,4,4,0,55,25,0,20
+বিজ্ঞান,বাংলাদেশ ও বিশ্বপরিচয়,5,বাংলাদেশের সরকার ব্যবস্থা ও রাজনীতি,Government System and Politics,CQ+MCQ,4,4,0,55,25,0,20
+বিজ্ঞান,বাংলাদেশ ও বিশ্বপরিচয়,6,বাংলাদেশের জনসংখ্যা ও উন্নয়ন,Population and Development,CQ+MCQ,3,3,0,50,25,0,15
+বিজ্ঞান,বাংলাদেশ ও বিশ্বপরিচয়,7,বাংলাদেশের সামাজিক সমস্যা ও প্রতিকার,Social Problems and Remedies,CQ+MCQ,4,4,0,55,25,0,20
+বিজ্ঞান,বাংলাদেশ ও বিশ্বপরিচয়,8,বাংলাদেশের সংস্কৃতি ও ঐতিহ্য,Culture and Heritage of Bangladesh,CQ+MCQ,3,3,0,45,20,0,15
+বিজ্ঞান,বাংলাদেশ ও বিশ্বপরিচয়,9,বিশ্ব পরিচয়,Introduction to the World,CQ+MCQ,3,4,0,50,25,0,15
+বিজ্ঞান,বাংলাদেশ ও বিশ্বপরিচয়,10,জাতিসংঘ ও বাংলাদেশ,United Nations and Bangladesh,CQ+MCQ,3,3,0,45,25,0,15
+বিজ্ঞান,ধর্ম ও নৈতিক শিক্ষা,1,আকাইদ ও নৈতিক জীবন,Aqaid and Moral Life,CQ+MCQ,4,4,0,50,25,0,20
+বিজ্ঞান,ধর্ম ও নৈতিক শিক্ষা,2,ইবাদত,Ibadat (Worship),CQ+MCQ,5,5,0,55,30,0,20
+বিজ্ঞান,ধর্ম ও নৈতিক শিক্ষা,3,কুরআন ও হাদিস শিক্ষা,Quran and Hadith Studies,CQ+MCQ,5,5,0,60,30,0,25
+বিজ্ঞান,ধর্ম ও নৈতিক শিক্ষা,4,আখলাক,Akhlaq (Character),CQ+MCQ,4,4,0,50,25,0,20
+বিজ্ঞান,ধর্ম ও নৈতিক শিক্ষা,5,আদর্শ জীবনচরিত,Model Biographies,CQ+MCQ,3,3,0,45,20,0,15
+মানবিক,ইতিহাস ও বিশ্বসভ্যতা,1,ইতিহাস পরিচিতি,Introduction to History,CQ+MCQ,3,4,0,50,25,0,15
+মানবিক,ইতিহাস ও বিশ্বসভ্যতা,2,"বিশ্বসভ্যতা (মিশর, সিন্ধু, গ্রিক ও রোম)","World Civilization (Egypt, Indus, Greek, Rome)",CQ+MCQ,5,5,0,75,35,0,25
+মানবিক,ইতিহাস ও বিশ্বসভ্যতা,3,প্রাচীন বাংলার জনপদ,Ancient Settlements of Bengal,CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,ইতিহাস ও বিশ্বসভ্যতা,4,প্রাচীন বাংলার রাজনৈতিক ইতিহাস,Political History of Ancient Bengal,CQ+MCQ,4,4,0,60,30,0,20
+মানবিক,ইতিহাস ও বিশ্বসভ্যতা,5,"প্রাচীন বাংলার সামাজিক, অর্থনৈতিক ও সাংস্কৃতিক ইতিহাস","Social, Economic and Cultural History of Ancient Bengal",CQ+MCQ,3,3,0,55,25,0,20
+মানবিক,ইতিহাস ও বিশ্বসভ্যতা,6,মধ্যযুগের বাংলার রাজনৈতিক ইতিহাস,Political History of Medieval Bengal,CQ+MCQ,4,4,0,60,30,0,20
+মানবিক,ইতিহাস ও বিশ্বসভ্যতা,7,"মধ্যযুগের বাংলার সামাজিক, অর্থনৈতিক ও সাংস্কৃতিক ইতিহাস","Social, Economic and Cultural History of Medieval Bengal",CQ+MCQ,3,3,0,55,25,0,15
+মানবিক,ইতিহাস ও বিশ্বসভ্যতা,8,বাংলায় ইংরেজ শাসনের সূচনাপর্ব,Commencement of British Rule in Bengal,CQ+MCQ,4,4,0,60,30,0,20
+মানবিক,ইতিহাস ও বিশ্বসভ্যতা,9,"ইংরেজ শাসন আমলে প্রতিরোধ, নবজাগরণ ও সংস্কার আন্দোলন","Resistance, Renaissance and Reform Movements",CQ+MCQ,5,5,0,70,35,0,25
+মানবিক,ইতিহাস ও বিশ্বসভ্যতা,10,ইংরেজ শাসন আমলে স্বাধিকার আন্দোলন,Self-determination Movement during British Rule,CQ+MCQ,4,4,0,60,30,0,20
+মানবিক,ইতিহাস ও বিশ্বসভ্যতা,11,ভাষা আন্দোলন ও পরবর্তী রাজনৈতিক ঘটনাপ্রবাহ,Language Movement and Subsequent Political Events,CQ+MCQ,5,5,0,65,35,0,25
+মানবিক,ইতিহাস ও বিশ্বসভ্যতা,12,সামরিক শাসন ও স্বাধিকার আন্দোলন (১৯৫৮-১৯৬৯),Military Rule and Self-determination (1958-1969),CQ+MCQ,4,4,0,60,30,0,20
+মানবিক,ইতিহাস ও বিশ্বসভ্যতা,13,সত্তরের নির্বাচন এবং মুক্তিযুদ্ধ,Election of 1970 and Liberation War,CQ+MCQ,5,5,0,70,35,0,25
+মানবিক,ইতিহাস ও বিশ্বসভ্যতা,14,বঙ্গবন্ধু শেখ মুজিবুর রহমানের শাসনকাল (১৯৭২-১৯৭৫),Sheikh Mujibur Rahman Era (1972-1975),CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,ইতিহাস ও বিশ্বসভ্যতা,15,সামরিক শাসন ও পরবর্তী ঘটনাপ্রবাহ (১৯৭৫-১৯৯০),Military Rule and Subsequent Events (1975-1990),CQ+MCQ,3,3,0,50,25,0,15
+মানবিক,পৌরনীতি ও নাগরিকতা,1,পৌরনীতি ও নাগরিকতা,Civics and Citizenship,CQ+MCQ,3,4,0,45,25,0,15
+মানবিক,পৌরনীতি ও নাগরিকতা,2,নাগরিক ও নাগরিকতা,Citizens and Citizenship,CQ+MCQ,5,5,0,60,30,0,25
+মানবিক,পৌরনীতি ও নাগরিকতা,3,"আইন, স্বাধীনতা ও সাম্য","Law, Liberty and Equality",CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,পৌরনীতি ও নাগরিকতা,4,রাষ্ট্র ও সরকার ব্যবস্থা,State and Government System,CQ+MCQ,5,5,0,60,30,0,25
+মানবিক,পৌরনীতি ও নাগরিকতা,5,সংবিধান,Constitution,CQ+MCQ,5,5,0,65,30,0,25
+মানবিক,পৌরনীতি ও নাগরিকতা,6,বাংলাদেশের সরকার ব্যবস্থা,Government System of Bangladesh,CQ+MCQ,5,5,0,65,35,0,25
+মানবিক,পৌরনীতি ও নাগরিকতা,7,গণতন্ত্রে রাজনৈতিক দল ও নির্বাচন,Political Parties and Elections in Democracy,CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,পৌরনীতি ও নাগরিকতা,8,বাংলাদেশের স্থানীয় সরকার ব্যবস্থা,Local Government System of Bangladesh,CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,পৌরনীতি ও নাগরিকতা,9,নাগরিক সমস্যা ও আমাদের করণীয়,Civic Problems and Our Duties,CQ+MCQ,3,3,0,50,25,0,15
+মানবিক,পৌরনীতি ও নাগরিকতা,10,স্বাধীন বাংলাদেশের অভ্যুদয়ে নাগরিক চেতনা,Civic Consciousness in Emergence of Bangladesh,CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,ভূগোল ও পরিবেশ,1,ভূগোল ও পরিবেশ পরিচিতি,Introduction to Geography and Environment,CQ+MCQ,3,4,0,45,25,0,15
+মানবিক,ভূগোল ও পরিবেশ,2,মহাবিশ্ব ও আমাদের পৃথিবী,Universe and Our Earth,CQ+MCQ,4,4,0,55,30,0,20
+মানবিক,ভূগোল ও পরিবেশ,3,মানচিত্র পঠন ও ব্যবহার,Map Reading and Usage,CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,ভূগোল ও পরিবেশ,4,পৃথিবীর অভ্যন্তরীণ ও বাহ্যিক গঠন,Internal and External Structure of Earth,CQ+MCQ,5,5,0,65,30,0,25
+মানবিক,ভূগোল ও পরিবেশ,5,বায়ুমণ্ডল,Atmosphere,CQ+MCQ,5,5,0,65,35,0,25
+মানবিক,ভূগোল ও পরিবেশ,6,বারিমণ্ডল,Hydrosphere,CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,ভূগোল ও পরিবেশ,7,জনসংখ্যা,Population,CQ+MCQ,3,4,0,50,25,0,15
+মানবিক,ভূগোল ও পরিবেশ,8,মানব বসতি,Human Settlements,CQ+MCQ,3,3,0,50,25,0,15
+মানবিক,ভূগোল ও পরিবেশ,9,সম্পদ ও অর্থনৈতিক কার্যাবলি,Resources and Economic Activities,CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,ভূগোল ও পরিবেশ,10,বাংলাদেশের ভৌগোলিক বিবরণ,Geographical Description of Bangladesh,CQ+MCQ,5,5,0,65,30,0,25
+মানবিক,ভূগোল ও পরিবেশ,11,বাংলাদেশের সম্পদ ও শিল্প,Resources and Industries of Bangladesh,CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,ভূগোল ও পরিবেশ,12,বাংলাদেশের প্রাকৃতিক দুর্যোগ,Natural Disasters of Bangladesh,CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,সাধারণ গণিত,1,বাস্তব সংখ্যা,Real Numbers,Math,0,4,5,0,25,70,25
+মানবিক,সাধারণ গণিত,2,সেট ও ফাংশন,Sets and Functions,Math,0,4,5,0,25,65,20
+মানবিক,সাধারণ গণিত,3,বীজগাণিতিক রাশি,Algebraic Expressions,Math,0,4,5,0,25,70,25
+মানবিক,সাধারণ গণিত,4,সূচক ও লগারিদম,Exponents and Logarithms,Math,0,4,4,0,25,60,20
+মানবিক,সাধারণ গণিত,5,এক চলকবিশিষ্ট সমীকরণ,Equations in One Variable,Math,0,5,5,0,30,75,25
+মানবিক,সাধারণ গণিত,6,"রেখা, কোণ ও ত্রিভুজ","Lines, Angles and Triangles",Math,0,4,5,0,25,70,25
+মানবিক,সাধারণ গণিত,7,ব্যবহারিক জ্যামিতি,Practical Geometry,Math,0,3,4,0,20,55,20
+মানবিক,সাধারণ গণিত,8,বৃত্ত,Circle,Math,0,4,5,0,25,70,25
+মানবিক,সাধারণ গণিত,9,ত্রিকোণমিতিক অনুপাত,Trigonometric Ratios,Math,0,5,5,0,30,80,25
+মানবিক,সাধারণ গণিত,10,দূরত্ব ও উচ্চতা,Distance and Height,Math,0,4,4,0,25,60,20
+মানবিক,সাধারণ গণিত,11,বীজগাণিতিক অনুপাত ও সমানুপাত,Algebraic Ratio and Proportion,Math,0,4,4,0,25,60,20
+মানবিক,সাধারণ গণিত,12,দুই চলকবিশিষ্ট সরল সহসমীকরণ,Simultaneous Linear Equations in Two Variables,Math,0,5,5,0,30,75,25
+মানবিক,সাধারণ গণিত,13,সসীম ধারা,Finite Series,Math,0,4,4,0,25,60,20
+মানবিক,সাধারণ গণিত,14,"অনুপাত, সদৃশতা ও প্রতিসমতা","Ratio, Similarity and Symmetry",Math,0,3,4,0,25,60,20
+মানবিক,সাধারণ গণিত,15,ক্ষেত্রফল সম্পর্কিত উপপাদ্য ও সম্পাদ্য,Theorems and Problems on Area,Math,0,3,4,0,25,65,20
+মানবিক,সাধারণ গণিত,16,পরিমিতি,Mensuration,Math,0,5,5,0,30,80,25
+মানবিক,সাধারণ গণিত,17,পরিসংখ্যান,Statistics,Math,0,4,4,0,25,60,20
+মানবিক,বাংলা ১ম পত্র,1,সুভা (রবীন্দ্রনাথ ঠাকুর),Subha (Rabindranath Tagore),CQ+MCQ,4,4,0,60,25,0,20
+মানবিক,বাংলা ১ম পত্র,2,বই পড়া (প্রমথ চৌধুরী),Boi Pora (Pramatha Chowdhury),CQ+MCQ,3,3,0,55,25,0,15
+মানবিক,বাংলা ১ম পত্র,3,আম-আঁটির ভেঁপু (বিভূতিভূষণ বন্দ্যোপাধ্যায়),Am-Antir Venpu (Bibhutibhushan),CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,বাংলা ১ম পত্র,4,মানুষ মুহম্মদ (সা.) (মোহাম্মদ ওয়াজেদ আলী),Manush Muhammad (Wajed Ali),CQ+MCQ,3,3,0,50,20,0,15
+মানবিক,বাংলা ১ম পত্র,5,একাত্তরের দিনগুলি (জাহানারা ইমাম),Ekattorer Dinguli (Jahanara Imam),CQ+MCQ,5,4,0,60,25,0,20
+মানবিক,বাংলা ১ম পত্র,6,কপোতাক্ষ নদ (মাইকেল মধুসূদন দত্ত),Kapotakkho Nod (Michael Madhusudan) - Poetry,CQ+MCQ,5,5,0,60,30,0,20
+মানবিক,বাংলা ১ম পত্র,7,মানুষ (কাজী নজরুল ইসলাম),Manush (Kazi Nazrul Islam) - Poetry,CQ+MCQ,5,5,0,60,30,0,25
+মানবিক,বাংলা ১ম পত্র,8,তোমাকে পাওয়ার জন্যে হে স্বাধীনতা (শামসুর রাহমান),Tomake Pawar Jonno He Shadhinota - Poetry,CQ+MCQ,5,5,0,60,30,0,25
+মানবিক,বাংলা ১ম পত্র,9,আমার পরিচয় (সৈয়দ শামসুল হক),Amar Porichoy (Syed Shamsul Haq) - Poetry,CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,বাংলা ১ম পত্র,10,"স্বাধীনতা, এই শব্দটি কীভাবে আমাদের হলো (নির্মলেন্দু গুণ)",Shadhinota Ei Shobdoti (Nirmalendu Goon) - Poetry,CQ+MCQ,4,5,0,55,25,0,20
+মানবিক,বাংলা ২য় পত্র,1,ভাষা,Language,CQ+MCQ,3,4,0,45,25,0,15
+মানবিক,বাংলা ২য় পত্র,2,বর্ণ প্রকরণ,Phonology,CQ+MCQ,3,4,0,45,25,0,15
+মানবিক,বাংলা ২য় পত্র,3,শব্দ প্রকরণ,Word Formation,CQ+MCQ,4,5,0,50,30,0,20
+মানবিক,বাংলা ২য় পত্র,4,পদ প্রকরণ,Parts of Speech,CQ+MCQ,5,5,0,55,30,0,20
+মানবিক,বাংলা ২য় পত্র,5,বাক্য প্রকরণ,Sentence Structure,CQ+MCQ,4,4,0,50,25,0,20
+মানবিক,বাংলা ২য় পত্র,6,বানান ও বিরাম চিহ্ন,Spelling and Punctuation,CQ+MCQ,3,4,0,40,25,0,15
+মানবিক,বাংলা ২য় পত্র,7,বাগধারা ও প্রবাদ-প্রবচন,Idioms and Proverbs,CQ+MCQ,3,5,0,40,30,0,15
+মানবিক,বাংলা ২য় পত্র,8,সারাংশ ও সারমর্ম,Summary Writing,CQ+MCQ,4,3,0,55,20,0,20
+মানবিক,বাংলা ২য় পত্র,9,ভাব-সম্প্রসারণ,Idea Expansion,CQ+MCQ,4,2,0,55,15,0,20
+মানবিক,বাংলা ২য় পত্র,10,পত্র লিখন,Letter Writing,CQ+MCQ,5,2,0,60,15,0,20
+মানবিক,বাংলা ২য় পত্র,11,প্রবন্ধ রচনা,Essay Writing,CQ+MCQ,5,2,0,75,15,0,25
+মানবিক,English 1st Paper,1,People Who Make a Difference,People Who Make a Difference,English-1,4,4,0,50,25,0,20
+মানবিক,English 1st Paper,2,Pastimes,Pastimes,English-1,3,3,0,45,25,0,15
+মানবিক,English 1st Paper,3,Events and Festivals,Events and Festivals,English-1,3,4,0,45,25,0,15
+মানবিক,English 1st Paper,4,Are We Aware?,Are We Aware?,English-1,4,4,0,50,25,0,20
+মানবিক,English 1st Paper,5,Nature and Environment,Nature and Environment,English-2,4,4,0,50,25,0,20
+মানবিক,English 1st Paper,6,Health and Hygiene,Health and Hygiene,English-2,3,3,0,45,25,0,15
+মানবিক,English 1st Paper,7,Human Rights,Human Rights,English-1,3,3,0,45,20,0,15
+মানবিক,English 1st Paper,8,Dreams,Dreams,English-1,3,3,0,45,20,0,15
+মানবিক,English 2nd Paper,1,Tenses and Right Forms of Verbs,Tenses and Right Forms of Verbs,English-2,5,5,0,60,35,0,25
+মানবিক,English 2nd Paper,2,Prepositions and Articles,Prepositions and Articles,English-2,4,5,0,50,30,0,20
+মানবিক,English 2nd Paper,3,Transformation of Sentences,Transformation of Sentences,English-2,5,4,0,55,30,0,20
+মানবিক,English 2nd Paper,4,Narration and Voice Change,Narration and Voice Change,English-2,5,5,0,60,35,0,25
+মানবিক,English 2nd Paper,5,Paragraph Writing,Paragraph Writing,English-3,5,0,0,65,0,0,25
+মানবিক,English 2nd Paper,6,Composition and Letter Writing,Composition and Letter Writing,English-3,5,0,0,70,0,0,25
+মানবিক,English 2nd Paper,7,Completing Story and Dialogue,Completing Story and Dialogue Writing,English-3,4,0,0,55,0,0,20
+মানবিক,তথ্য ও যোগাযোগ প্রযুক্তি,1,তথ্য ও যোগাযোগ প্রযুক্তি এবং আমাদের বাংলাদেশ,ICT and Our Bangladesh,MCQ-only,0,5,0,0,40,0,20
+মানবিক,তথ্য ও যোগাযোগ প্রযুক্তি,2,কম্পিউটার ও কম্পিউটার ব্যবহারকারীর নিরাপত্তা,Computer and User Safety,MCQ-only,0,4,0,0,35,0,20
+মানবিক,তথ্য ও যোগাযোগ প্রযুক্তি,3,আমার শিক্ষায় ইন্টারনেট,Internet in My Education,MCQ-only,0,4,0,0,35,0,15
+মানবিক,তথ্য ও যোগাযোগ প্রযুক্তি,4,আমার লেখালেখি ও হিসাব,My Writing and Calculations,MCQ-only,0,4,0,0,35,0,15
+মানবিক,তথ্য ও যোগাযোগ প্রযুক্তি,5,মাল্টিমিডিয়া ও গ্রাফিক্স,Multimedia and Graphics,MCQ-only,0,3,0,0,30,0,15
+মানবিক,তথ্য ও যোগাযোগ প্রযুক্তি,6,ডেটাবেজের ব্যবহার,Use of Database,MCQ-only,0,4,0,0,35,0,15
+মানবিক,বাংলাদেশ ও বিশ্বপরিচয়,1,পূর্ব বাংলার আন্দোলন ও বাংলাদেশের অভ্যুদয়,Movements of East Bengal and Emergence of Bangladesh,CQ+MCQ,5,5,0,65,30,0,25
+মানবিক,বাংলাদেশ ও বিশ্বপরিচয়,2,স্বাধীন বাংলাদেশ,Independent Bangladesh,CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,বাংলাদেশ ও বিশ্বপরিচয়,3,বাংলাদেশের সম্পদ,Resources of Bangladesh,CQ+MCQ,3,4,0,50,25,0,15
+মানবিক,বাংলাদেশ ও বিশ্বপরিচয়,4,বাংলাদেশের অর্থনীতি,Economy of Bangladesh,CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,বাংলাদেশ ও বিশ্বপরিচয়,5,বাংলাদেশের সরকার ব্যবস্থা ও রাজনীতি,Government System and Politics,CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,বাংলাদেশ ও বিশ্বপরিচয়,6,বাংলাদেশের জনসংখ্যা ও উন্নয়ন,Population and Development,CQ+MCQ,3,3,0,50,25,0,15
+মানবিক,বাংলাদেশ ও বিশ্বপরিচয়,7,বাংলাদেশের সামাজিক সমস্যা ও প্রতিকার,Social Problems and Remedies,CQ+MCQ,4,4,0,55,25,0,20
+মানবিক,বাংলাদেশ ও বিশ্বপরিচয়,8,বাংলাদেশের সংস্কৃতি ও ঐতিহ্য,Culture and Heritage of Bangladesh,CQ+MCQ,3,3,0,45,20,0,15
+মানবিক,বাংলাদেশ ও বিশ্বপরিচয়,9,বিশ্ব পরিচয়,Introduction to the World,CQ+MCQ,3,4,0,50,25,0,15
+মানবিক,বাংলাদেশ ও বিশ্বপরিচয়,10,জাতিসংঘ ও বাংলাদেশ,United Nations and Bangladesh,CQ+MCQ,3,3,0,45,25,0,15
+মানবিক,ধর্ম ও নৈতিক শিক্ষা,1,আকাইদ ও নৈতিক জীবন,Aqaid and Moral Life,CQ+MCQ,4,4,0,50,25,0,20
+মানবিক,ধর্ম ও নৈতিক শিক্ষা,2,ইবাদত,Ibadat (Worship),CQ+MCQ,5,5,0,55,30,0,20
+মানবিক,ধর্ম ও নৈতিক শিক্ষা,3,কুরআন ও হাদিস শিক্ষা,Quran and Hadith Studies,CQ+MCQ,5,5,0,60,30,0,25
+মানবিক,ধর্ম ও নৈতিক শিক্ষা,4,আখলাক,Akhlaq (Character),CQ+MCQ,4,4,0,50,25,0,20
+মানবিক,ধর্ম ও নৈতিক শিক্ষা,5,আদর্শ জীবনচরিত,Model Biographies,CQ+MCQ,3,3,0,45,20,0,15
+বাণিজ্য,হিসাববিজ্ঞান,1,হিসাববিজ্ঞান পরিচিতি,Introduction to Accounting,CQ+MCQ,4,4,0,50,25,0,20
+বাণিজ্য,হিসাববিজ্ঞান,2,লেনদেন,Transactions,CQ+MCQ,5,5,0,60,30,0,25
+বাণিজ্য,হিসাববিজ্ঞান,3,দুতরফা দাখিলা পদ্ধতি,Double Entry System,CQ+MCQ,5,5,0,70,35,0,25
+বাণিজ্য,হিসাববিজ্ঞান,4,"পণ্যের ক্রয়মূল্য, উৎপাদন ব্যয় ও বিক্রয়মূল্য","Cost of Goods, Production and Sales",CQ+MCQ,5,5,0,75,30,0,25
+বাণিজ্য,হিসাববিজ্ঞান,5,হিসাবের শ্রেণিবিভাগ,Classification of Accounts,CQ+MCQ,4,4,0,55,25,0,20
+বাণিজ্য,হিসাববিজ্ঞান,6,জাবেদা,Journal,CQ+MCQ,5,5,0,80,30,0,25
+বাণিজ্য,হিসাববিজ্ঞান,7,খতিয়ান,Ledger,CQ+MCQ,5,5,0,80,30,0,25
+বাণিজ্য,হিসাববিজ্ঞান,8,নগদান বই,Cash Book,CQ+MCQ,5,5,0,75,30,0,25
+বাণিজ্য,হিসাববিজ্ঞান,9,রেওয়ামিল,Trial Balance,CQ+MCQ,5,5,0,70,30,0,25
+বাণিজ্য,হিসাববিজ্ঞান,10,আর্থিক বিবরণী,Financial Statements,CQ+MCQ,4,4,0,65,25,0,20
+বাণিজ্য,হিসাববিজ্ঞান,11,পারিবারিক ও আত্মকর্মসংস্থানমূলক উদ্যোগের হিসাব,Family and Self-employment Accounting,CQ+MCQ,3,3,0,55,20,0,15
+বাণিজ্য,ব্যবসায় উদ্যোগ,1,ব্যবসায় পরিচিতি,Introduction to Business,CQ+MCQ,4,4,0,50,25,0,20
+বাণিজ্য,ব্যবসায় উদ্যোগ,2,ব্যবসায় উদ্যোগ ও উদ্যোক্তা,Business Entrepreneurship and Entrepreneurs,CQ+MCQ,5,5,0,55,30,0,25
+বাণিজ্য,ব্যবসায় উদ্যোগ,3,আত্মকর্মসংস্থান,Self-Employment,CQ+MCQ,4,4,0,50,25,0,20
+বাণিজ্য,ব্যবসায় উদ্যোগ,4,মালিকানার ভিত্তিতে ব্যবসায়,Business Based on Ownership,CQ+MCQ,5,5,0,60,30,0,25
+বাণিজ্য,ব্যবসায় উদ্যোগ,5,ব্যবসায় প্রতিষ্ঠানের ব্যবস্থাপনা,Management of Business Organizations,CQ+MCQ,4,4,0,55,25,0,20
+বাণিজ্য,ব্যবসায় উদ্যোগ,6,বিপণন,Marketing,CQ+MCQ,4,4,0,55,25,0,20
+বাণিজ্য,ব্যবসায় উদ্যোগ,7,ব্যবসায়ে অর্থায়ন,Business Financing,CQ+MCQ,4,4,0,55,25,0,20
+বাণিজ্য,ব্যবসায় উদ্যোগ,8,ব্যবসায় যোগাযোগ,Business Communication,CQ+MCQ,3,3,0,50,25,0,15
+বাণিজ্য,ব্যবসায় উদ্যোগ,9,ব্যবসায় নৈতিকতা ও সামাজিক দায়বদ্ধতা,Business Ethics and Social Responsibility,CQ+MCQ,3,3,0,45,20,0,15
+বাণিজ্য,ব্যবসায় উদ্যোগ,10,ব্যবসায়ে তথ্য ও যোগাযোগ প্রযুক্তির ব্যবহার,ICT in Business,CQ+MCQ,3,4,0,45,25,0,15
+বাণিজ্য,ফিন্যান্স ও ব্যাংকিং,1,অর্থায়ন ও ব্যবসায় অর্থায়ন,Finance and Business Finance,CQ+MCQ,4,4,0,55,25,0,20
+বাণিজ্য,ফিন্যান্স ও ব্যাংকিং,2,অর্থের সময়মূল্য,Time Value of Money,CQ+MCQ,5,5,0,75,30,0,25
+বাণিজ্য,ফিন্যান্স ও ব্যাংকিং,3,ঝুঁকি ও অনিশ্চয়তা,Risk and Uncertainty,CQ+MCQ,4,4,0,55,25,0,20
+বাণিজ্য,ফিন্যান্স ও ব্যাংকিং,4,মূলধন আয়-ব্যয় প্রাক্কলন,Capital Budgeting,CQ+MCQ,5,5,0,70,30,0,25
+বাণিজ্য,ফিন্যান্স ও ব্যাংকিং,5,মূলধন ব্যয়,Cost of Capital,CQ+MCQ,4,4,0,60,25,0,20
+বাণিজ্য,ফিন্যান্স ও ব্যাংকিং,6,"শেয়ার, বন্ড ও ডিবেঞ্চার","Shares, Bonds and Debentures",CQ+MCQ,5,5,0,65,30,0,25
+বাণিজ্য,ফিন্যান্স ও ব্যাংকিং,7,"মুদ্রা, ব্যাংক ও ব্যাংকিং","Currency, Bank and Banking",CQ+MCQ,4,4,0,55,25,0,20
+বাণিজ্য,ফিন্যান্স ও ব্যাংকিং,8,ব্যাংকিং ব্যবসা ও তার ধরন,Banking Business and Its Types,CQ+MCQ,4,4,0,55,25,0,20
+বাণিজ্য,ফিন্যান্স ও ব্যাংকিং,9,কেন্দ্রীয় ব্যাংক ও বাণিজ্যিক ব্যাংক,Central Bank and Commercial Bank,CQ+MCQ,5,5,0,60,30,0,25
+বাণিজ্য,ফিন্যান্স ও ব্যাংকিং,10,ই-ব্যাংকিং ও অনলাইন ব্যাংকিং,E-Banking and Online Banking,CQ+MCQ,3,4,0,45,25,0,15
+বাণিজ্য,সাধারণ গণিত,1,বাস্তব সংখ্যা,Real Numbers,Math,0,4,5,0,25,70,25
+বাণিজ্য,সাধারণ গণিত,2,সেট ও ফাংশন,Sets and Functions,Math,0,4,5,0,25,65,20
+বাণিজ্য,সাধারণ গণিত,3,বীজগাণিতিক রাশি,Algebraic Expressions,Math,0,4,5,0,25,70,25
+বাণিজ্য,সাধারণ গণিত,4,সূচক ও লগারিদম,Exponents and Logarithms,Math,0,4,4,0,25,60,20
+বাণিজ্য,সাধারণ গণিত,5,এক চলকবিশিষ্ট সমীকরণ,Equations in One Variable,Math,0,5,5,0,30,75,25
+বাণিজ্য,সাধারণ গণিত,6,"রেখা, কোণ ও ত্রিভুজ","Lines, Angles and Triangles",Math,0,4,5,0,25,70,25
+বাণিজ্য,সাধারণ গণিত,7,ব্যবহারিক জ্যামিতি,Practical Geometry,Math,0,3,4,0,20,55,20
+বাণিজ্য,সাধারণ গণিত,8,বৃত্ত,Circle,Math,0,4,5,0,25,70,25
+বাণিজ্য,সাধারণ গণিত,9,ত্রিকোণমিতিক অনুপাত,Trigonometric Ratios,Math,0,5,5,0,30,80,25
+বাণিজ্য,সাধারণ গণিত,10,দূরত্ব ও উচ্চতা,Distance and Height,Math,0,4,4,0,25,60,20
+বাণিজ্য,সাধারণ গণিত,11,বীজগাণিতিক অনুপাত ও সমানুপাত,Algebraic Ratio and Proportion,Math,0,4,4,0,25,60,20
+বাণিজ্য,সাধারণ গণিত,12,দুই চলকবিশিষ্ট সরল সহসমীকরণ,Simultaneous Linear Equations in Two Variables,Math,0,5,5,0,30,75,25
+বাণিজ্য,সাধারণ গণিত,13,সসীম ধারা,Finite Series,Math,0,4,4,0,25,60,20
+বাণিজ্য,সাধারণ গণিত,14,"অনুপাত, সদৃশতা ও প্রতিসমতা","Ratio, Similarity and Symmetry",Math,0,3,4,0,25,60,20
+বাণিজ্য,সাধারণ গণিত,15,ক্ষেত্রফল সম্পর্কিত উপপাদ্য ও সম্পাদ্য,Theorems and Problems on Area,Math,0,3,4,0,25,65,20
+বাণিজ্য,সাধারণ গণিত,16,পরিমিতি,Mensuration,Math,0,5,5,0,30,80,25
+বাণিজ্য,সাধারণ গণিত,17,পরিসংখ্যান,Statistics,Math,0,4,4,0,25,60,20
+বাণিজ্য,বাংলা ১ম পত্র,1,সুভা (রবীন্দ্রনাথ ঠাকুর),Subha (Rabindranath Tagore),CQ+MCQ,4,4,0,60,25,0,20
+বাণিজ্য,বাংলা ১ম পত্র,2,বই পড়া (প্রমথ চৌধুরী),Boi Pora (Pramatha Chowdhury),CQ+MCQ,3,3,0,55,25,0,15
+বাণিজ্য,বাংলা ১ম পত্র,3,আম-আঁটির ভেঁপু (বিভূতিভূষণ বন্দ্যোপাধ্যায়),Am-Antir Venpu (Bibhutibhushan),CQ+MCQ,4,4,0,55,25,0,20
+বাণিজ্য,বাংলা ১ম পত্র,4,মানুষ মুহম্মদ (সা.) (মোহাম্মদ ওয়াজেদ আলী),Manush Muhammad (Wajed Ali),CQ+MCQ,3,3,0,50,20,0,15
+বাণিজ্য,বাংলা ১ম পত্র,5,একাত্তরের দিনগুলি (জাহানারা ইমাম),Ekattorer Dinguli (Jahanara Imam),CQ+MCQ,5,4,0,60,25,0,20
+বাণিজ্য,বাংলা ১ম পত্র,6,কপোতাক্ষ নদ (মাইকেল মধুসূদন দত্ত),Kapotakkho Nod (Michael Madhusudan) - Poetry,CQ+MCQ,5,5,0,60,30,0,20
+বাণিজ্য,বাংলা ১ম পত্র,7,মানুষ (কাজী নজরুল ইসলাম),Manush (Kazi Nazrul Islam) - Poetry,CQ+MCQ,5,5,0,60,30,0,25
+বাণিজ্য,বাংলা ১ম পত্র,8,তোমাকে পাওয়ার জন্যে হে স্বাধীনতা (শামসুর রাহমান),Tomake Pawar Jonno He Shadhinota - Poetry,CQ+MCQ,5,5,0,60,30,0,25
+বাণিজ্য,বাংলা ১ম পত্র,9,আমার পরিচয় (সৈয়দ শামসুল হক),Amar Porichoy (Syed Shamsul Haq) - Poetry,CQ+MCQ,4,4,0,55,25,0,20
+বাণিজ্য,বাংলা ১ম পত্র,10,"স্বাধীনতা, এই শব্দটি কীভাবে আমাদের হলো (নির্মলেন্দু গুণ)",Shadhinota Ei Shobdoti (Nirmalendu Goon) - Poetry,CQ+MCQ,4,5,0,55,25,0,20
+বাণিজ্য,বাংলা ২য় পত্র,1,ভাষা,Language,CQ+MCQ,3,4,0,45,25,0,15
+বাণিজ্য,বাংলা ২য় পত্র,2,বর্ণ প্রকরণ,Phonology,CQ+MCQ,3,4,0,45,25,0,15
+বাণিজ্য,বাংলা ২য় পত্র,3,শব্দ প্রকরণ,Word Formation,CQ+MCQ,4,5,0,50,30,0,20
+বাণিজ্য,বাংলা ২য় পত্র,4,পদ প্রকরণ,Parts of Speech,CQ+MCQ,5,5,0,55,30,0,20
+বাণিজ্য,বাংলা ২য় পত্র,5,বাক্য প্রকরণ,Sentence Structure,CQ+MCQ,4,4,0,50,25,0,20
+বাণিজ্য,বাংলা ২য় পত্র,6,বানান ও বিরাম চিহ্ন,Spelling and Punctuation,CQ+MCQ,3,4,0,40,25,0,15
+বাণিজ্য,বাংলা ২য় পত্র,7,বাগধারা ও প্রবাদ-প্রবচন,Idioms and Proverbs,CQ+MCQ,3,5,0,40,30,0,15
+বাণিজ্য,বাংলা ২য় পত্র,8,সারাংশ ও সারমর্ম,Summary Writing,CQ+MCQ,4,3,0,55,20,0,20
+বাণিজ্য,বাংলা ২য় পত্র,9,ভাব-সম্প্রসারণ,Idea Expansion,CQ+MCQ,4,2,0,55,15,0,20
+বাণিজ্য,বাংলা ২য় পত্র,10,পত্র লিখন,Letter Writing,CQ+MCQ,5,2,0,60,15,0,20
+বাণিজ্য,বাংলা ২য় পত্র,11,প্রবন্ধ রচনা,Essay Writing,CQ+MCQ,5,2,0,75,15,0,25
+বাণিজ্য,English 1st Paper,1,People Who Make a Difference,People Who Make a Difference,English-1,4,4,0,50,25,0,20
+বাণিজ্য,English 1st Paper,2,Pastimes,Pastimes,English-1,3,3,0,45,25,0,15
+বাণিজ্য,English 1st Paper,3,Events and Festivals,Events and Festivals,English-1,3,4,0,45,25,0,15
+বাণিজ্য,English 1st Paper,4,Are We Aware?,Are We Aware?,English-1,4,4,0,50,25,0,20
+বাণিজ্য,English 1st Paper,5,Nature and Environment,Nature and Environment,English-2,4,4,0,50,25,0,20
+বাণিজ্য,English 1st Paper,6,Health and Hygiene,Health and Hygiene,English-2,3,3,0,45,25,0,15
+বাণিজ্য,English 1st Paper,7,Human Rights,Human Rights,English-1,3,3,0,45,20,0,15
+বাণিজ্য,English 1st Paper,8,Dreams,Dreams,English-1,3,3,0,45,20,0,15
+বাণিজ্য,English 2nd Paper,1,Tenses and Right Forms of Verbs,Tenses and Right Forms of Verbs,English-2,5,5,0,60,35,0,25
+বাণিজ্য,English 2nd Paper,2,Prepositions and Articles,Prepositions and Articles,English-2,4,5,0,50,30,0,20
+বাণিজ্য,English 2nd Paper,3,Transformation of Sentences,Transformation of Sentences,English-2,5,4,0,55,30,0,20
+বাণিজ্য,English 2nd Paper,4,Narration and Voice Change,Narration and Voice Change,English-2,5,5,0,60,35,0,25
+বাণিজ্য,English 2nd Paper,5,Paragraph Writing,Paragraph Writing,English-3,5,0,0,65,0,0,25
+বাণিজ্য,English 2nd Paper,6,Composition and Letter Writing,Composition and Letter Writing,English-3,5,0,0,70,0,0,25
+বাণিজ্য,English 2nd Paper,7,Completing Story and Dialogue,Completing Story and Dialogue Writing,English-3,4,0,0,55,0,0,20
+বাণিজ্য,তথ্য ও যোগাযোগ প্রযুক্তি,1,তথ্য ও যোগাযোগ প্রযুক্তি এবং আমাদের বাংলাদেশ,ICT and Our Bangladesh,MCQ-only,0,5,0,0,40,0,20
+বাণিজ্য,তথ্য ও যোগাযোগ প্রযুক্তি,2,কম্পিউটার ও কম্পিউটার ব্যবহারকারীর নিরাপত্তা,Computer and User Safety,MCQ-only,0,4,0,0,35,0,20
+বাণিজ্য,তথ্য ও যোগাযোগ প্রযুক্তি,3,আমার শিক্ষায় ইন্টারনেট,Internet in My Education,MCQ-only,0,4,0,0,35,0,15
+বাণিজ্য,তথ্য ও যোগাযোগ প্রযুক্তি,4,আমার লেখালেখি ও হিসাব,My Writing and Calculations,MCQ-only,0,4,0,0,35,0,15
+বাণিজ্য,তথ্য ও যোগাযোগ প্রযুক্তি,5,মাল্টিমিডিয়া ও গ্রাফিক্স,Multimedia and Graphics,MCQ-only,0,3,0,0,30,0,15
+বাণিজ্য,তথ্য ও যোগাযোগ প্রযুক্তি,6,ডেটাবেজের ব্যবহার,Use of Database,MCQ-only,0,4,0,0,35,0,15
+বাণিজ্য,বাংলাদেশ ও বিশ্বপরিচয়,1,পূর্ব বাংলার আন্দোলন ও বাংলাদেশের অভ্যুদয়,Movements of East Bengal and Emergence of Bangladesh,CQ+MCQ,5,5,0,65,30,0,25
+বাণিজ্য,বাংলাদেশ ও বিশ্বপরিচয়,2,স্বাধীন বাংলাদেশ,Independent Bangladesh,CQ+MCQ,4,4,0,55,25,0,20
+বাণিজ্য,বাংলাদেশ ও বিশ্বপরিচয়,3,বাংলাদেশের সম্পদ,Resources of Bangladesh,CQ+MCQ,3,4,0,50,25,0,15
+বাণিজ্য,বাংলাদেশ ও বিশ্বপরিচয়,4,বাংলাদেশের অর্থনীতি,Economy of Bangladesh,CQ+MCQ,4,4,0,55,25,0,20
+বাণিজ্য,বাংলাদেশ ও বিশ্বপরিচয়,5,বাংলাদেশের সরকার ব্যবস্থা ও রাজনীতি,Government System and Politics,CQ+MCQ,4,4,0,55,25,0,20
+বাণিজ্য,বাংলাদেশ ও বিশ্বপরিচয়,6,বাংলাদেশের জনসংখ্যা ও উন্নয়ন,Population and Development,CQ+MCQ,3,3,0,50,25,0,15
+বাণিজ্য,বাংলাদেশ ও বিশ্বপরিচয়,7,বাংলাদেশের সামাজিক সমস্যা ও প্রতিকার,Social Problems and Remedies,CQ+MCQ,4,4,0,55,25,0,20
+বাণিজ্য,বাংলাদেশ ও বিশ্বপরিচয়,8,বাংলাদেশের সংস্কৃতি ও ঐতিহ্য,Culture and Heritage of Bangladesh,CQ+MCQ,3,3,0,45,20,0,15
+বাণিজ্য,বাংলাদেশ ও বিশ্বপরিচয়,9,বিশ্ব পরিচয়,Introduction to the World,CQ+MCQ,3,4,0,50,25,0,15
+বাণিজ্য,বাংলাদেশ ও বিশ্বপরিচয়,10,জাতিসংঘ ও বাংলাদেশ,United Nations and Bangladesh,CQ+MCQ,3,3,0,45,25,0,15
+বাণিজ্য,ধর্ম ও নৈতিক শিক্ষা,1,আকাইদ ও নৈতিক জীবন,Aqaid and Moral Life,CQ+MCQ,4,4,0,50,25,0,20
+বাণিজ্য,ধর্ম ও নৈতিক শিক্ষা,2,ইবাদত,Ibadat (Worship),CQ+MCQ,5,5,0,55,30,0,20
+বাণিজ্য,ধর্ম ও নৈতিক শিক্ষা,3,কুরআন ও হাদিস শিক্ষা,Quran and Hadith Studies,CQ+MCQ,5,5,0,60,30,0,25
+বাণিজ্য,ধর্ম ও নৈতিক শিক্ষা,4,আখলাক,Akhlaq (Character),CQ+MCQ,4,4,0,50,25,0,20
+বাণিজ্য,ধর্ম ও নৈতিক শিক্ষা,5,আদর্শ জীবনচরিত,Model Biographies,CQ+MCQ,3,3,0,45,20,0,15
+কলা,কৃষি শিক্ষা,1,কৃষি ও বাংলাদেশের অর্থনীতি,Agriculture and Bangladesh Economy,CQ+MCQ,4,4,0,50,25,0,20
+কলা,কৃষি শিক্ষা,2,কৃষি উপকরণ,Agricultural Inputs,CQ+MCQ,4,4,0,55,25,0,20
+কলা,কৃষি শিক্ষা,3,কৃষি জলবায়ু ও শস্য উৎপাদন,Agricultural Climate and Crop Production,CQ+MCQ,5,5,0,60,30,0,25
+কলা,কৃষি শিক্ষা,4,মাটি ও মৃত্তিকা সম্পদ,Soil and Soil Resources,CQ+MCQ,5,5,0,60,30,0,25
+কলা,কৃষি শিক্ষা,5,কৃষি বনায়ন,Agroforestry,CQ+MCQ,3,4,0,50,25,0,15
+কলা,কৃষি শিক্ষা,6,পোল্ট্রি পালন,Poultry Farming,CQ+MCQ,4,4,0,55,25,0,20
+কলা,কৃষি শিক্ষা,7,মৎস্য চাষ,Fish Farming,CQ+MCQ,4,4,0,55,25,0,20
+কলা,কৃষি শিক্ষা,8,কৃষি প্রযুক্তি,Agricultural Technology,CQ+MCQ,3,4,0,50,25,0,15
+কলা,কৃষি শিক্ষা,9,কৃষিভিত্তিক শিল্প,Agro-based Industries,CQ+MCQ,3,3,0,45,20,0,15
+কলা,কৃষি শিক্ষা,10,কৃষি সমবায়,Agricultural Cooperatives,CQ+MCQ,3,3,0,45,20,0,15
+কলা,গার্হস্থ্য বিজ্ঞান,1,গার্হস্থ্য বিজ্ঞান পরিচিতি,Introduction to Home Science,CQ+MCQ,3,4,0,45,25,0,15
+কলা,গার্হস্থ্য বিজ্ঞান,2,কৈশোরকাল ও পুষ্টি,Adolescence and Nutrition,CQ+MCQ,5,5,0,60,30,0,25
+কলা,গার্হস্থ্য বিজ্ঞান,3,শিশুর বিকাশ,Child Development,CQ+MCQ,4,4,0,55,25,0,20
+কলা,গার্হস্থ্য বিজ্ঞান,4,খাদ্য ও পুষ্টি,Food and Nutrition,CQ+MCQ,5,5,0,60,30,0,25
+কলা,গার্হস্থ্য বিজ্ঞান,5,খাদ্য পরিকল্পনা ও ব্যবস্থাপনা,Food Planning and Management,CQ+MCQ,4,4,0,55,25,0,20
+কলা,গার্হস্থ্য বিজ্ঞান,6,পোশাক ও বয়নশিল্প,Clothing and Textile,CQ+MCQ,3,4,0,50,25,0,15
+কলা,গার্হস্থ্য বিজ্ঞান,7,গৃহ ব্যবস্থাপনা ও সম্পদ,Home Management and Resources,CQ+MCQ,4,4,0,55,25,0,20
+কলা,গার্হস্থ্য বিজ্ঞান,8,পারিবারিক আয় ও ব্যয়,Family Income and Expenditure,CQ+MCQ,4,4,0,55,25,0,20
+কলা,গার্হস্থ্য বিজ্ঞান,9,প্রাথমিক চিকিৎসা,First Aid,CQ+MCQ,3,4,0,45,25,0,15
+কলা,গার্হস্থ্য বিজ্ঞান,10,পরিবেশ ও স্বাস্থ্য,Environment and Health,CQ+MCQ,3,3,0,45,20,0,15
+কলা,সাধারণ গণিত,1,বাস্তব সংখ্যা,Real Numbers,Math,0,4,5,0,25,70,25
+কলা,সাধারণ গণিত,2,সেট ও ফাংশন,Sets and Functions,Math,0,4,5,0,25,65,20
+কলা,সাধারণ গণিত,3,বীজগাণিতিক রাশি,Algebraic Expressions,Math,0,4,5,0,25,70,25
+কলা,সাধারণ গণিত,4,সূচক ও লগারিদম,Exponents and Logarithms,Math,0,4,4,0,25,60,20
+কলা,সাধারণ গণিত,5,এক চলকবিশিষ্ট সমীকরণ,Equations in One Variable,Math,0,5,5,0,30,75,25
+কলা,সাধারণ গণিত,6,"রেখা, কোণ ও ত্রিভুজ","Lines, Angles and Triangles",Math,0,4,5,0,25,70,25
+কলা,সাধারণ গণিত,7,ব্যবহারিক জ্যামিতি,Practical Geometry,Math,0,3,4,0,20,55,20
+কলা,সাধারণ গণিত,8,বৃত্ত,Circle,Math,0,4,5,0,25,70,25
+কলা,সাধারণ গণিত,9,ত্রিকোণমিতিক অনুপাত,Trigonometric Ratios,Math,0,5,5,0,30,80,25
+কলা,সাধারণ গণিত,10,দূরত্ব ও উচ্চতা,Distance and Height,Math,0,4,4,0,25,60,20
+কলা,সাধারণ গণিত,11,বীজগাণিতিক অনুপাত ও সমানুপাত,Algebraic Ratio and Proportion,Math,0,4,4,0,25,60,20
+কলা,সাধারণ গণিত,12,দুই চলকবিশিষ্ট সরল সহসমীকরণ,Simultaneous Linear Equations in Two Variables,Math,0,5,5,0,30,75,25
+কলা,সাধারণ গণিত,13,সসীম ধারা,Finite Series,Math,0,4,4,0,25,60,20
+কলা,সাধারণ গণিত,14,"অনুপাত, সদৃশতা ও প্রতিসমতা","Ratio, Similarity and Symmetry",Math,0,3,4,0,25,60,20
+কলা,সাধারণ গণিত,15,ক্ষেত্রফল সম্পর্কিত উপপাদ্য ও সম্পাদ্য,Theorems and Problems on Area,Math,0,3,4,0,25,65,20
+কলা,সাধারণ গণিত,16,পরিমিতি,Mensuration,Math,0,5,5,0,30,80,25
+কলা,সাধারণ গণিত,17,পরিসংখ্যান,Statistics,Math,0,4,4,0,25,60,20
+কলা,বাংলা ১ম পত্র,1,সুভা (রবীন্দ্রনাথ ঠাকুর),Subha (Rabindranath Tagore),CQ+MCQ,4,4,0,60,25,0,20
+কলা,বাংলা ১ম পত্র,2,বই পড়া (প্রমথ চৌধুরী),Boi Pora (Pramatha Chowdhury),CQ+MCQ,3,3,0,55,25,0,15
+কলা,বাংলা ১ম পত্র,3,আম-আঁটির ভেঁপু (বিভূতিভূষণ বন্দ্যোপাধ্যায়),Am-Antir Venpu (Bibhutibhushan),CQ+MCQ,4,4,0,55,25,0,20
+কলা,বাংলা ১ম পত্র,4,মানুষ মুহম্মদ (সা.) (মোহাম্মদ ওয়াজেদ আলী),Manush Muhammad (Wajed Ali),CQ+MCQ,3,3,0,50,20,0,15
+কলা,বাংলা ১ম পত্র,5,একাত্তরের দিনগুলি (জাহানারা ইমাম),Ekattorer Dinguli (Jahanara Imam),CQ+MCQ,5,4,0,60,25,0,20
+কলা,বাংলা ১ম পত্র,6,কপোতাক্ষ নদ (মাইকেল মধুসূদন দত্ত),Kapotakkho Nod (Michael Madhusudan) - Poetry,CQ+MCQ,5,5,0,60,30,0,20
+কলা,বাংলা ১ম পত্র,7,মানুষ (কাজী নজরুল ইসলাম),Manush (Kazi Nazrul Islam) - Poetry,CQ+MCQ,5,5,0,60,30,0,25
+কলা,বাংলা ১ম পত্র,8,তোমাকে পাওয়ার জন্যে হে স্বাধীনতা (শামসুর রাহমান),Tomake Pawar Jonno He Shadhinota - Poetry,CQ+MCQ,5,5,0,60,30,0,25
+কলা,বাংলা ১ম পত্র,9,আমার পরিচয় (সৈয়দ শামসুল হক),Amar Porichoy (Syed Shamsul Haq) - Poetry,CQ+MCQ,4,4,0,55,25,0,20
+কলা,বাংলা ১ম পত্র,10,"স্বাধীনতা, এই শব্দটি কীভাবে আমাদের হলো (নির্মলেন্দু গুণ)",Shadhinota Ei Shobdoti (Nirmalendu Goon) - Poetry,CQ+MCQ,4,5,0,55,25,0,20
+কলা,বাংলা ২য় পত্র,1,ভাষা,Language,CQ+MCQ,3,4,0,45,25,0,15
+কলা,বাংলা ২য় পত্র,2,বর্ণ প্রকরণ,Phonology,CQ+MCQ,3,4,0,45,25,0,15
+কলা,বাংলা ২য় পত্র,3,শব্দ প্রকরণ,Word Formation,CQ+MCQ,4,5,0,50,30,0,20
+কলা,বাংলা ২য় পত্র,4,পদ প্রকরণ,Parts of Speech,CQ+MCQ,5,5,0,55,30,0,20
+কলা,বাংলা ২য় পত্র,5,বাক্য প্রকরণ,Sentence Structure,CQ+MCQ,4,4,0,50,25,0,20
+কলা,বাংলা ২য় পত্র,6,বানান ও বিরাম চিহ্ন,Spelling and Punctuation,CQ+MCQ,3,4,0,40,25,0,15
+কলা,বাংলা ২য় পত্র,7,বাগধারা ও প্রবাদ-প্রবচন,Idioms and Proverbs,CQ+MCQ,3,5,0,40,30,0,15
+কলা,বাংলা ২য় পত্র,8,সারাংশ ও সারমর্ম,Summary Writing,CQ+MCQ,4,3,0,55,20,0,20
+কলা,বাংলা ২য় পত্র,9,ভাব-সম্প্রসারণ,Idea Expansion,CQ+MCQ,4,2,0,55,15,0,20
+কলা,বাংলা ২য় পত্র,10,পত্র লিখন,Letter Writing,CQ+MCQ,5,2,0,60,15,0,20
+কলা,বাংলা ২য় পত্র,11,প্রবন্ধ রচনা,Essay Writing,CQ+MCQ,5,2,0,75,15,0,25
+কলা,English 1st Paper,1,People Who Make a Difference,People Who Make a Difference,English-1,4,4,0,50,25,0,20
+কলা,English 1st Paper,2,Pastimes,Pastimes,English-1,3,3,0,45,25,0,15
+কলা,English 1st Paper,3,Events and Festivals,Events and Festivals,English-1,3,4,0,45,25,0,15
+কলা,English 1st Paper,4,Are We Aware?,Are We Aware?,English-1,4,4,0,50,25,0,20
+কলা,English 1st Paper,5,Nature and Environment,Nature and Environment,English-2,4,4,0,50,25,0,20
+কলা,English 1st Paper,6,Health and Hygiene,Health and Hygiene,English-2,3,3,0,45,25,0,15
+কলা,English 1st Paper,7,Human Rights,Human Rights,English-1,3,3,0,45,20,0,15
+কলা,English 1st Paper,8,Dreams,Dreams,English-1,3,3,0,45,20,0,15
+কলা,English 2nd Paper,1,Tenses and Right Forms of Verbs,Tenses and Right Forms of Verbs,English-2,5,5,0,60,35,0,25
+কলা,English 2nd Paper,2,Prepositions and Articles,Prepositions and Articles,English-2,4,5,0,50,30,0,20
+কলা,English 2nd Paper,3,Transformation of Sentences,Transformation of Sentences,English-2,5,4,0,55,30,0,20
+কলা,English 2nd Paper,4,Narration and Voice Change,Narration and Voice Change,English-2,5,5,0,60,35,0,25
+কলা,English 2nd Paper,5,Paragraph Writing,Paragraph Writing,English-3,5,0,0,65,0,0,25
+কলা,English 2nd Paper,6,Composition and Letter Writing,Composition and Letter Writing,English-3,5,0,0,70,0,0,25
+কলা,English 2nd Paper,7,Completing Story and Dialogue,Completing Story and Dialogue Writing,English-3,4,0,0,55,0,0,20
+কলা,তথ্য ও যোগাযোগ প্রযুক্তি,1,তথ্য ও যোগাযোগ প্রযুক্তি এবং আমাদের বাংলাদেশ,ICT and Our Bangladesh,MCQ-only,0,5,0,0,40,0,20
+কলা,তথ্য ও যোগাযোগ প্রযুক্তি,2,কম্পিউটার ও কম্পিউটার ব্যবহারকারীর নিরাপত্তা,Computer and User Safety,MCQ-only,0,4,0,0,35,0,20
+কলা,তথ্য ও যোগাযোগ প্রযুক্তি,3,আমার শিক্ষায় ইন্টারনেট,Internet in My Education,MCQ-only,0,4,0,0,35,0,15
+কলা,তথ্য ও যোগাযোগ প্রযুক্তি,4,আমার লেখালেখি ও হিসাব,My Writing and Calculations,MCQ-only,0,4,0,0,35,0,15
+কলা,তথ্য ও যোগাযোগ প্রযুক্তি,5,মাল্টিমিডিয়া ও গ্রাফিক্স,Multimedia and Graphics,MCQ-only,0,3,0,0,30,0,15
+কলা,তথ্য ও যোগাযোগ প্রযুক্তি,6,ডেটাবেজের ব্যবহার,Use of Database,MCQ-only,0,4,0,0,35,0,15
+কলা,বাংলাদেশ ও বিশ্বপরিচয়,1,পূর্ব বাংলার আন্দোলন ও বাংলাদেশের অভ্যুদয়,Movements of East Bengal and Emergence of Bangladesh,CQ+MCQ,5,5,0,65,30,0,25
+কলা,বাংলাদেশ ও বিশ্বপরিচয়,2,স্বাধীন বাংলাদেশ,Independent Bangladesh,CQ+MCQ,4,4,0,55,25,0,20
+কলা,বাংলাদেশ ও বিশ্বপরিচয়,3,বাংলাদেশের সম্পদ,Resources of Bangladesh,CQ+MCQ,3,4,0,50,25,0,15
+কলা,বাংলাদেশ ও বিশ্বপরিচয়,4,বাংলাদেশের অর্থনীতি,Economy of Bangladesh,CQ+MCQ,4,4,0,55,25,0,20
+কলা,বাংলাদেশ ও বিশ্বপরিচয়,5,বাংলাদেশের সরকার ব্যবস্থা ও রাজনীতি,Government System and Politics,CQ+MCQ,4,4,0,55,25,0,20
+কলা,বাংলাদেশ ও বিশ্বপরিচয়,6,বাংলাদেশের জনসংখ্যা ও উন্নয়ন,Population and Development,CQ+MCQ,3,3,0,50,25,0,15
+কলা,বাংলাদেশ ও বিশ্বপরিচয়,7,বাংলাদেশের সামাজিক সমস্যা ও প্রতিকার,Social Problems and Remedies,CQ+MCQ,4,4,0,55,25,0,20
+কলা,বাংলাদেশ ও বিশ্বপরিচয়,8,বাংলাদেশের সংস্কৃতি ও ঐতিহ্য,Culture and Heritage of Bangladesh,CQ+MCQ,3,3,0,45,20,0,15
+কলা,বাংলাদেশ ও বিশ্বপরিচয়,9,বিশ্ব পরিচয়,Introduction to the World,CQ+MCQ,3,4,0,50,25,0,15
+কলা,বাংলাদেশ ও বিশ্বপরিচয়,10,জাতিসংঘ ও বাংলাদেশ,United Nations and Bangladesh,CQ+MCQ,3,3,0,45,25,0,15
+কলা,ধর্ম ও নৈতিক শিক্ষা,1,আকাইদ ও নৈতিক জীবন,Aqaid and Moral Life,CQ+MCQ,4,4,0,50,25,0,20
+কলা,ধর্ম ও নৈতিক শিক্ষা,2,ইবাদত,Ibadat (Worship),CQ+MCQ,5,5,0,55,30,0,20
+কলা,ধর্ম ও নৈতিক শিক্ষা,3,কুরআন ও হাদিস শিক্ষা,Quran and Hadith Studies,CQ+MCQ,5,5,0,60,30,0,25
+কলা,ধর্ম ও নৈতিক শিক্ষা,4,আখলাক,Akhlaq (Character),CQ+MCQ,4,4,0,50,25,0,20
+কলা,ধর্ম ও নৈতিক শিক্ষা,5,আদর্শ জীবনচরিত,Model Biographies,CQ+MCQ,3,3,0,45,20,0,15

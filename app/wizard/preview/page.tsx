@@ -11,6 +11,17 @@ export default function PreviewPage() {
   const [data, setData] = useState<{ name: string; routine: RoutineDay[]; durationDays: number } | null>(null);
   const [visibleCount, setVisibleCount] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const userInteracted = useRef(false);
+
+  useEffect(() => {
+    const handleInteraction = () => { userInteracted.current = true; };
+    window.addEventListener("scroll", handleInteraction, { passive: true });
+    window.addEventListener("touchstart", handleInteraction, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleInteraction);
+      window.removeEventListener("touchstart", handleInteraction);
+    };
+  }, []);
 
   useEffect(() => {
     const saved = JSON.parse(sessionStorage.getItem("wizard") || "{}");
@@ -18,23 +29,25 @@ export default function PreviewPage() {
     setData({ name: saved.name, routine: saved.routinePreview, durationDays: saved.durationDays });
   }, [router]);
 
-  // Staggered reveal: show days one by one with 500ms delay
+  // Staggered reveal: show days one by one with 300ms delay
   useEffect(() => {
     if (!data) return;
     if (visibleCount >= data.routine.length) return;
 
     const timer = setTimeout(() => {
       setVisibleCount((prev) => prev + 1);
-    }, 500);
+    }, 300);
 
     return () => clearTimeout(timer);
   }, [data, visibleCount]);
 
-  // Auto-scroll 300ms after each day appears
+  // Auto-scroll 300ms after each day appears (stops if user has interacted)
   useEffect(() => {
     if (visibleCount > 0 && bottomRef.current) {
       const scrollTimer = setTimeout(() => {
-        bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+        if (!userInteracted.current) {
+          bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+        }
       }, 300);
       return () => clearTimeout(scrollTimer);
     }

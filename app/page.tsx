@@ -3,9 +3,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="min-h-dvh bg-[var(--color-primary)] flex flex-col justify-center items-center px-6 text-center">
-      <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mb-10">
-        <span className="text-[var(--color-primary)] font-bold text-sm">10MS</span>
-      </div>
+      <img src="/10ms-logo.svg" alt="10 Minute School" className="w-32 mb-10" />
       <h1 className="text-[28px] font-bold text-white leading-tight mb-4">
         তোমার SSC 27<br/>রুটিন তৈরি করো
       </h1>

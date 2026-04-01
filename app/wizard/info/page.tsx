@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import type { Section } from "@/lib/types";
 
-const sections: Section[] = ["বিজ্ঞান", "মানবিক", "বাণিজ্য", "কলা"];
+const sections: Section[] = ["বিজ্ঞান", "মানবিক", "বাণিজ্য"];
 
 export default function InfoPage() {
   const router = useRouter();

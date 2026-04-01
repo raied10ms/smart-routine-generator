@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import type { DurationOption } from "@/lib/types";
 import DurationTile from "@/components/DurationTile";
+import { toBanglaNum } from "@/lib/utils";
 
 const options: { days: DurationOption; desc: string; rec?: boolean }[] = [
   { days: 7, desc: "দ্রুত — দ্রুত রিভিশনের জন্য" },
@@ -29,6 +30,27 @@ export default function DurationPage() {
   useEffect(() => {
     const saved = JSON.parse(sessionStorage.getItem("wizard") || "{}");
     if (saved.durationDays) setSelected(saved.durationDays);
+  }, []);
+
+  const summary = useMemo(() => {
+    if (typeof window === "undefined") return { totalSubjects: 0, totalChapters: 0, pari: 0, revise: 0, pariNa: 0, syllabusNai: 0 };
+    const saved = JSON.parse(sessionStorage.getItem("wizard") || "{}");
+    const assessment = saved.assessment || {};
+    let totalSubjects = 0, totalChapters = 0;
+    let pari = 0, revise = 0, pariNa = 0, syllabusNai = 0;
+
+    for (const subject of Object.keys(assessment)) {
+      totalSubjects++;
+      const chapters = assessment[subject];
+      for (const status of Object.values(chapters)) {
+        totalChapters++;
+        if (status === "pari") pari++;
+        else if (status === "revise") revise++;
+        else if (status === "pari_na") pariNa++;
+        else if (status === "syllabus_nai") syllabusNai++;
+      }
+    }
+    return { totalSubjects, totalChapters, pari, revise, pariNa, syllabusNai };
   }, []);
 
   useEffect(() => {
@@ -71,6 +93,40 @@ export default function DurationPage() {
   return (
     <div>
       <h1 className="text-[22px] font-bold mb-6">কতদিনের রুটিন চাও?</h1>
+
+      <div className="bg-[var(--color-surface)] rounded-[var(--radius-card)] p-4 mb-6">
+        <h2 className="text-[15px] font-semibold mb-3">তোমার বিষয় সারাংশ</h2>
+        <div className="grid grid-cols-2 gap-2 text-[13px]">
+          <div>📚 <span className="font-medium">{toBanglaNum(summary.totalSubjects)}</span> বিষয়</div>
+          <div>📖 <span className="font-medium">{toBanglaNum(summary.totalChapters)}</span> অধ্যায়</div>
+          {summary.pariNa > 0 && <div>❌ <span className="font-medium text-[var(--color-error)]">{toBanglaNum(summary.pariNa)}</span> একদম পারি না</div>}
+          {summary.revise > 0 && <div>🔄 <span className="font-medium text-[var(--color-warning)]">{toBanglaNum(summary.revise)}</span> রিভাইজ দিলে পারব</div>}
+          {summary.pari > 0 && <div>✅ <span className="font-medium text-[var(--color-success)]">{toBanglaNum(summary.pari)}</span> পারি</div>}
+          {summary.syllabusNai > 0 && <div>⬜ <span className="font-medium text-[var(--color-gray)]">{toBanglaNum(summary.syllabusNai)}</span> সিলেবাসে নাই</div>}
+        </div>
+      </div>
+
+      <div className="bg-white rounded-[var(--radius-card)] border border-[var(--color-border)] p-4 mb-6">
+        <h2 className="text-[15px] font-semibold mb-3">রুটিন কিভাবে কাজ করবে?</h2>
+        <div className="space-y-2 text-[13px] text-[var(--color-text-muted)]">
+          <div className="flex gap-2">
+            <span className="text-[var(--color-primary)] font-semibold shrink-0">Phase 1</span>
+            <span>ফাউন্ডেশন মোড — যে অধ্যায়গুলো &quot;একদম পারি না&quot; সেগুলোর basic থেকে শুরু</span>
+          </div>
+          <div className="flex gap-2">
+            <span className="text-[var(--color-warning)] font-semibold shrink-0">Phase 2</span>
+            <span>প্র্যাকটিস গ্রাইন্ড — CQ, MCQ ও গণিত অনুশীলন</span>
+          </div>
+          <div className="flex gap-2">
+            <span className="text-[var(--color-success)] font-semibold shrink-0">Phase 3</span>
+            <span>ফাইনাল রিভিশন — সব গুরুত্বপূর্ণ অধ্যায় রিভিশন</span>
+          </div>
+          <div className="text-[12px] mt-2 pt-2 border-t border-[var(--color-border)]">
+            ⚡ প্রতি সপ্তাহে ১টি পাওয়ার ডে (বেশি সময়) • 🌙 শনি-রবি হালকা দিন
+          </div>
+        </div>
+      </div>
+
       <div className="grid grid-cols-2 gap-3 mb-8">
         {options.map((o) => (
           <DurationTile key={o.days} days={o.days} description={o.desc} recommended={o.rec}

@@ -1,14 +1,8 @@
 import { Document, Page, Text, View, Font } from "@react-pdf/renderer";
 import type { RoutineDay } from "./types";
 
-// Register Bangla font
-Font.register({
-  family: "HindSiliguri",
-  fonts: [
-    { src: "https://fonts.gstatic.com/s/hindsiliguri/v12/ijwTs5juQtsqLLdNIgBJcDYSA66Q.ttf", fontWeight: 400 },
-    { src: "https://fonts.gstatic.com/s/hindsiliguri/v12/ijwOs5juQtsqLLdNIgBJcF6CfNKO_Q.ttf", fontWeight: 700 },
-  ],
-});
+// Disable hyphenation (causes issues with non-Latin text)
+Font.registerHyphenationCallback((word) => [word]);
 
 const THEME = {
   bg: "#4A1520",
@@ -52,7 +46,7 @@ export default function RoutinePDF({
           padding: 20,
           color: "white",
           fontSize: 7,
-          fontFamily: "HindSiliguri",
+          fontFamily: "Helvetica",
         }}
       >
         {/* Header */}

@@ -49,21 +49,31 @@ export function generatePdfHtml({ name, section, durationDays, routine }: PdfPro
       let firstChapter = true;
 
       for (const entry of chapters) {
-        const rowClass = day.isExtreme ? "extreme-row" : day.isWeekend ? "weekend-row" : "";
+        const isFirstRow = firstSubject && firstChapter;
+        const rowClass = [
+          isFirstRow ? "day-start" : "",
+          day.isExtreme ? "extreme-row" : "",
+          day.isWeekend ? "weekend-row" : "",
+        ].filter(Boolean).join(" ");
         daysHtml += `<tr class="${rowClass}">`;
 
+        // Day col — show on first row of the day only, blank otherwise
         if (firstSubject && firstChapter) {
-          const rowspan = day.entries.length;
-          daysHtml += `<td class="day-col" rowspan="${rowspan}"><strong>${dayLabel}</strong><span class="hours">${hours}h</span></td>`;
+          daysHtml += `<td class="day-col"><strong>${dayLabel}</strong><span class="hours">${hours}h</span></td>`;
+        } else {
+          daysHtml += `<td class="day-col day-cont"></td>`;
         }
 
+        // Subject col — show on first row of each subject, blank otherwise
         if (firstChapter) {
-          daysHtml += `<td class="subject-col" rowspan="${chapters.length}"><strong>${subject}</strong></td>`;
+          daysHtml += `<td class="subject-col"><strong>${subject}</strong></td>`;
+        } else {
+          daysHtml += `<td class="subject-col subject-cont"></td>`;
         }
 
         const typeShort = entry.taskType.includes("CQ") ? "CQ" : entry.taskType.includes("MCQ") ? "MCQ" : entry.taskType.includes("গণিত") ? "Math" : "Rev";
         daysHtml += `<td class="chapter-col">${entry.chapterName}</td>`;
-        daysHtml += `<td class="type-col"><span class="badge badge-${typeShort.toLowerCase()}">${entry.taskType}</span> <span class="time">${entry.timeMin}m</span><span class="check">☐</span></td>`;
+        daysHtml += `<td class="type-col"><span class="badge badge-${typeShort.toLowerCase()}">${entry.taskType}</span> <span class="time">${entry.timeMin}m</span> <span class="check">☐</span></td>`;
         daysHtml += `</tr>`;
 
         firstChapter = false;
@@ -107,10 +117,11 @@ export function generatePdfHtml({ name, section, durationDays, routine }: PdfPro
   }
   .toolbar button:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  /* ── Content wrapper ── */
+  /* ── Content wrapper — A4 width at 96dpi = 794px ── */
   #routine-content {
+    width: 794px;
     padding: 16px 18px;
-    margin-top: 44px;
+    margin: 44px auto 0;
   }
 
   /* ── Header ── */
@@ -156,6 +167,10 @@ export function generatePdfHtml({ name, section, durationDays, routine }: PdfPro
   tr:nth-child(even) td { background: #fafafa; }
   .extreme-row td { border-left: 2px solid #E31E24; }
   .weekend-row td { color: #555; }
+  /* blank continuation cells — no bottom border so rows within a day feel grouped */
+  .day-cont, .subject-cont { border-bottom: 1px solid #f0f0f0 !important; }
+  /* visual separator between days */
+  tr.day-start td { border-top: 2px solid #e0e0e0; }
 
   .day-col {
     width: 10%; white-space: nowrap;
@@ -206,18 +221,20 @@ function downloadPdf() {
   status.textContent = 'PDF generate হচ্ছে, একটু অপেক্ষা করো...';
 
   const opt = {
-    margin: [10, 10, 10, 10],
+    margin: [8, 0, 8, 0],
     filename: 'SSC27-Smart-Routine-${name.replace(/\s+/g, "-")}.pdf',
-    image: { type: 'jpeg', quality: 0.97 },
+    image: { type: 'jpeg', quality: 0.98 },
     html2canvas: {
       scale: 2,
       useCORS: true,
       backgroundColor: '#ffffff',
       logging: false,
-      letterRendering: true
+      letterRendering: true,
+      width: 794,
+      windowWidth: 794
     },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    pagebreak: { mode: 'avoid-all' }
+    pagebreak: { mode: ['css', 'legacy'], avoid: 'tr' }
   };
 
   document.fonts.ready.then(() => html2pdf().set(opt).from(document.getElementById('routine-content')).save())

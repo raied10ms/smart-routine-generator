@@ -20,24 +20,9 @@ export default function CapturePage() {
     if (!phone.trim()) return;
     setSubmitting(true);
 
-    // Secret test code: "1234" triggers direct PDF download
+    // Secret test code: "1234" opens printable routine in new tab
     if (phone.trim() === "1234") {
-      try {
-        const res = await fetch("/api/pdf/test");
-        if (res.ok) {
-          const blob = await res.blob();
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = "SSC27-Routine-Test.pdf";
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        }
-      } catch (e) {
-        console.error("Test PDF download failed:", e);
-      }
+      window.open("/api/pdf/test", "_blank");
       setSubmitting(false);
       return;
     }

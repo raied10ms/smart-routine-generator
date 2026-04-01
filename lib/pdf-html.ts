@@ -171,12 +171,31 @@ export function generatePdfHtml({ name, section, durationDays, routine, device }
     font-size: 8px;
   }
 
+  .print-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: #111; color: white; padding: 10px 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px;
+  }
+  .print-bar button {
+    background: #E31E24; color: white; border: none; padding: 8px 20px;
+    border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer;
+    font-family: 'Hind Siliguri', sans-serif;
+  }
+  .print-bar button:hover { opacity: 0.9; }
+  body { padding-top: 50px; }
+
   @media print {
-    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; padding-top: 0; }
+    .print-bar { display: none; }
   }
 </style>
 </head>
 <body>
+  <div class="print-bar">
+    <span>📄 তোমার রুটিন তৈরি হয়েছে — PDF সেভ করো!</span>
+    <button onclick="window.print()">🖨️ Save as PDF</button>
+  </div>
   <div class="header">
     <div>
       <h1>SSC 27 SMART ROUTINE</h1>

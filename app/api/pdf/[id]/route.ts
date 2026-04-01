@@ -42,29 +42,7 @@ export async function GET(
     device: sub.device_preference || "mobile",
   });
 
-  try {
-    const puppeteer = await import("puppeteer-core");
-    const browser = await puppeteer.default.launch({
-      executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-      headless: true,
-      args: ["--no-sandbox"],
-    });
-    const page = await browser.newPage();
-    await page.setContent(html, { waitUntil: "networkidle0" });
-    const pdf = await page.pdf({
-      format: "A4",
-      printBackground: true,
-      margin: { top: "10mm", bottom: "10mm", left: "10mm", right: "10mm" },
-    });
-    await browser.close();
-
-    return new NextResponse(Buffer.from(pdf), {
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="SSC27-Routine-${sub.name.replace(/\s+/g, "-")}.pdf"`,
-      },
-    });
-  } catch {
-    return new NextResponse(html, { headers: { "Content-Type": "text/html; charset=utf-8" } });
-  }
+  return new NextResponse(html, {
+    headers: { "Content-Type": "text/html; charset=utf-8" },
+  });
 }

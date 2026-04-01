@@ -93,7 +93,10 @@ export function generatePdfHtml({ name, section, durationDays, routine }: PdfPro
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {
+  /* A4 at 96dpi = 794px. Body is exactly this width so html2canvas captures at A4 proportions. */
+  html, body {
+    width: 794px;
+    max-width: 794px;
     font-family: 'Hind Siliguri', sans-serif;
     background: #fff;
     color: #111;
@@ -117,11 +120,10 @@ export function generatePdfHtml({ name, section, durationDays, routine }: PdfPro
   }
   .toolbar button:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  /* ── Content wrapper — A4 width at 96dpi = 794px ── */
+  /* ── Content wrapper ── */
   #routine-content {
-    width: 794px;
-    padding: 16px 18px;
-    margin: 44px auto 0;
+    padding: 14px 20px 20px;
+    margin-top: 44px;
   }
 
   /* ── Header ── */
@@ -230,7 +232,6 @@ function downloadPdf() {
       backgroundColor: '#ffffff',
       logging: false,
       letterRendering: true,
-      width: 794,
       windowWidth: 794
     },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },

@@ -18,7 +18,10 @@ export default function WizardLayout({ children }: { children: React.ReactNode }
   return (
     <div className="min-h-dvh bg-[var(--color-bg)]">
       <ProgressBar currentStep={step} totalSteps={5} />
-      <div className="max-w-md mx-auto px-[var(--padding-page)] py-6">
+      <div className="max-w-md mx-auto px-[var(--padding-page)]">
+        <div className="py-3 flex items-center justify-center">
+          <img src="/10ms-logo.svg" alt="10 Minute School" className="h-6" />
+        </div>
         {children}
       </div>
     </div>

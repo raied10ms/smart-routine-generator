@@ -3,6 +3,7 @@ import Link from "next/link";
 export default function SuccessPage() {
   return (
     <div className="min-h-dvh flex flex-col justify-center items-center px-6 text-center">
+      <img src="/10ms-logo.svg" alt="10 Minute School" className="h-6 absolute top-4 left-1/2 -translate-x-1/2" />
       <div className="w-20 h-20 rounded-full bg-[var(--color-primary-light)] flex items-center justify-center mb-6">
         <span className="text-[var(--color-primary)] text-4xl">✓</span>
       </div>

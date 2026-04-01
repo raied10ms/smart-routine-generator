@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { parse } from "csv-parse/sync";
-import pool from "@/lib/db";
+import { supabase } from "@/lib/db";
 
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
@@ -10,24 +10,26 @@ export async function POST(req: NextRequest) {
   const text = await file.text();
   const records = parse(text, { columns: true, skip_empty_lines: true, trim: true });
 
-  await pool.query("DELETE FROM chapters");
-  let imported = 0;
+  await supabase.from("chapters").delete().neq("id", 0);
 
-  for (const rawRow of records) {
-    const row = rawRow as Record<string, string>;
-    await pool.query(
-      `INSERT INTO chapters (section, subject, chapter_number, chapter_name_bn, chapter_name_en, question_type, cq_importance, mcq_importance, math_importance, time_cq_min, time_mcq_min, time_math_min, time_revision_min)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)`,
-      [
-        row.section, row.subject, parseInt(row.chapter_number),
-        row.chapter_name_bn, row.chapter_name_en || null, row.question_type,
-        parseInt(row.cq_importance), parseInt(row.mcq_importance), parseInt(row.math_importance),
-        parseInt(row.time_cq_min), parseInt(row.time_mcq_min), parseInt(row.time_math_min),
-        parseInt(row.time_revision_min),
-      ]
-    );
-    imported++;
-  }
+  const rows = (records as Record<string, string>[]).map((row) => ({
+    section: row.section,
+    subject: row.subject,
+    chapter_number: parseInt(row.chapter_number),
+    chapter_name_bn: row.chapter_name_bn,
+    chapter_name_en: row.chapter_name_en || null,
+    question_type: row.question_type,
+    cq_importance: parseInt(row.cq_importance),
+    mcq_importance: parseInt(row.mcq_importance),
+    math_importance: parseInt(row.math_importance),
+    time_cq_min: parseInt(row.time_cq_min),
+    time_mcq_min: parseInt(row.time_mcq_min),
+    time_math_min: parseInt(row.time_math_min),
+    time_revision_min: parseInt(row.time_revision_min),
+  }));
 
-  return NextResponse.json({ imported });
+  const { error } = await supabase.from("chapters").insert(rows);
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  return NextResponse.json({ imported: rows.length });
 }

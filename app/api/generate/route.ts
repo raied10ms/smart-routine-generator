@@ -1,16 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
-import pool from "@/lib/db";
+import { supabase } from "@/lib/db";
 import { generateRoutine } from "@/lib/routine-engine";
 
 export async function POST(req: NextRequest) {
   const { section, assessment, durationDays } = await req.json();
 
-  const { rows: chapters } = await pool.query(
-    "SELECT * FROM chapters WHERE section = $1 ORDER BY subject, chapter_number",
-    [section]
-  );
+  const { data: chapters, error } = await supabase
+    .from("chapters")
+    .select("*")
+    .eq("section", section)
+    .order("subject")
+    .order("chapter_number");
 
-  const routine = generateRoutine(chapters, assessment, durationDays);
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  const routine = generateRoutine(chapters || [], assessment, durationDays);
 
   return NextResponse.json({ routine });
 }

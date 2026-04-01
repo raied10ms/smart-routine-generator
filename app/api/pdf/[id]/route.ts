@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import pool from "@/lib/db";
+import { supabase } from "@/lib/db";
 import { generatePdfHtml } from "@/lib/pdf-html";
 
 export async function GET(
@@ -8,16 +8,23 @@ export async function GET(
 ) {
   const { id } = await params;
 
-  const { rows: subs } = await pool.query("SELECT * FROM submissions WHERE id = $1", [id]);
-  if (subs.length === 0) return NextResponse.json({ error: "Not found" }, { status: 404 });
-  const sub = subs[0];
+  const { data: sub, error: subErr } = await supabase
+    .from("submissions")
+    .select("*")
+    .eq("id", id)
+    .single();
 
-  const { rows: days } = await pool.query(
-    "SELECT * FROM routine_days WHERE submission_id = $1 ORDER BY day_number",
-    [id]
-  );
+  if (subErr || !sub) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
-  const routine = days.map((d: Record<string, unknown>) => ({
+  const { data: days, error: dayErr } = await supabase
+    .from("routine_days")
+    .select("*")
+    .eq("submission_id", id)
+    .order("day_number");
+
+  if (dayErr) return NextResponse.json({ error: dayErr.message }, { status: 500 });
+
+  const routine = (days || []).map((d) => ({
     dayNumber: d.day_number as number,
     phase: d.phase as 1 | 2 | 3,
     phaseName: (d.phase_name as string) || "",

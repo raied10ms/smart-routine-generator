@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import pool from "@/lib/db";
+import { supabase } from "@/lib/db";
 import { sendSms } from "@/lib/sms";
 
 export async function POST(req: NextRequest) {
@@ -7,29 +7,41 @@ export async function POST(req: NextRequest) {
   const { name, phone, school, classRoll, section, devicePreference, durationDays, assessment, routine } = body;
 
   // 1. Insert submission
-  const { rows } = await pool.query(
-    `INSERT INTO submissions (name, phone, school, class_roll, section, device_preference, duration_days, assessment)
-     VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id`,
-    [name, phone, school || null, classRoll || null, section, devicePreference, durationDays, JSON.stringify(assessment)]
-  );
-  const submissionId = rows[0].id;
+  const { data: sub, error: subErr } = await supabase
+    .from("submissions")
+    .insert({
+      name, phone, school: school || null, class_roll: classRoll || null,
+      section, device_preference: devicePreference, duration_days: durationDays,
+      assessment,
+    })
+    .select("id")
+    .single();
+
+  if (subErr) return NextResponse.json({ error: subErr.message }, { status: 500 });
+  const submissionId = sub.id;
 
   // 2. Insert routine days
-  for (const day of routine) {
-    await pool.query(
-      `INSERT INTO routine_days (submission_id, day_number, phase, phase_name, is_weekend, is_extreme, entries, total_time_min)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
-      [submissionId, day.dayNumber, day.phase, day.phaseName || "", day.isWeekend, day.isExtreme ?? false, JSON.stringify(day.entries), day.totalTimeMin]
-    );
-  }
+  const dayRows = routine.map((day: { dayNumber: number; phase: number; phaseName?: string; isWeekend: boolean; isExtreme?: boolean; entries: unknown[]; totalTimeMin: number }) => ({
+    submission_id: submissionId,
+    day_number: day.dayNumber,
+    phase: day.phase,
+    phase_name: day.phaseName || "",
+    is_weekend: day.isWeekend,
+    is_extreme: day.isExtreme ?? false,
+    entries: day.entries,
+    total_time_min: day.totalTimeMin,
+  }));
+
+  const { error: dayErr } = await supabase.from("routine_days").insert(dayRows);
+  if (dayErr) return NextResponse.json({ error: dayErr.message }, { status: 500 });
 
   // 3. Generate PDF URL
   const pdfUrl = `${process.env.NEXT_PUBLIC_BASE_URL || "https://ssc.10ms.com"}/api/pdf/${submissionId}`;
-  await pool.query("UPDATE submissions SET pdf_url = $1 WHERE id = $2", [pdfUrl, submissionId]);
+  await supabase.from("submissions").update({ pdf_url: pdfUrl }).eq("id", submissionId);
 
   // 4. Send SMS
   const smsSent = await sendSms(phone, `${name}, তোমার SSC 27 রুটিন তৈরি হয়েছে! Download করো: ${pdfUrl}`);
-  await pool.query("UPDATE submissions SET sms_sent = $1 WHERE id = $2", [smsSent, submissionId]);
+  await supabase.from("submissions").update({ sms_sent: smsSent }).eq("id", submissionId);
 
   return NextResponse.json({ id: submissionId, pdfUrl });
 }

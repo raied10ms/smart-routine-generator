@@ -33,7 +33,7 @@ export default function CapturePage() {
     pollRef.current = setInterval(async () => {
       try {
         const res = await fetch(result.pdfPath, { method: "HEAD" });
-        if (res.ok) { setPdfReady(true); clearInterval(pollRef.current!); }
+        if (res.status === 200) { setPdfReady(true); clearInterval(pollRef.current!); }
       } catch { /* ignore */ }
     }, 2000);
     return () => { if (pollRef.current) clearInterval(pollRef.current); };

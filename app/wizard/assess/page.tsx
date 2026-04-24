@@ -7,22 +7,11 @@ import { getSubjects } from "@/lib/subjects";
 import SubjectCard from "@/components/SubjectCard";
 import { toBanglaNum } from "@/lib/utils";
 
-type Filter = "all" | AssessmentStatus;
-
-const FILTERS: { key: Filter; label: string; dot: string }[] = [
-  { key: "all",          label: "সব বিষয়",            dot: "#E8001D" },
-  { key: "pari",         label: "পারি",                dot: "#1CAB55" },
-  { key: "revise",       label: "রিভাইজ দিলে পারবো",  dot: "#F59E0B" },
-  { key: "pari_na",      label: "একদম পারিনা",         dot: "#E8001D" },
-  { key: "syllabus_nai", label: "সিলেবাসেই নাই",       dot: "#9CA3AF" },
-];
-
 export default function AssessPage() {
   const router = useRouter();
   const [chapters, setChapters] = useState<Chapter[]>([]);
   const [assessment, setAssessment] = useState<Assessment>({});
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<Filter>("all");
 
   useEffect(() => {
     const saved = JSON.parse(sessionStorage.getItem("wizard") || "{}");
@@ -96,10 +85,7 @@ export default function AssessPage() {
     router.push("/wizard/duration");
   }
 
-  const filteredSubjects = Object.entries(subjects).filter(([subject]) => {
-    if (filter === "all") return true;
-    return getSubjectStatus(subject) === filter;
-  });
+  const filteredSubjects = Object.entries(subjects);
 
   if (loading) {
     return (
@@ -148,40 +134,15 @@ export default function AssessPage() {
         )}
       </div>
 
-      {/* Filter tabs */}
-      <div className="overflow-x-auto -mx-4 px-4 mb-4 scrollbar-none">
-        <div className="flex gap-2 pb-1">
-          {FILTERS.map((f) => (
-            <button
-              key={f.key}
-              type="button"
-              onClick={() => setFilter(f.key)}
-              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full border-[1.5px] text-[13px] font-medium cursor-pointer whitespace-nowrap transition-all shrink-0 ${
-                filter === f.key
-                  ? "bg-[#111827] border-[#111827] text-white"
-                  : "bg-white border-[#E5E7EB] text-[#6B7280] hover:border-[#D1D5DB]"
-              }`}
-            >
-              <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: filter === f.key ? "#fff" : f.dot }} />
-              {f.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Subject cards */}
       <div className="flex flex-col gap-2.5 mb-6">
-        {filteredSubjects.length === 0 ? (
-          <div className="text-center py-8 text-gray-400 text-[14px]">এই ফিল্টারে কোনো বিষয় নেই</div>
-        ) : (
-          filteredSubjects.map(([subject, chs]) => (
+        {filteredSubjects.map(([subject, chs]) => (
             <SubjectCard key={subject} subject={subject} chapters={chs}
               subjectStatus={getSubjectStatus(subject)}
               chapterStatuses={assessment[subject] || {}}
               onSubjectChange={(s) => handleSubjectChange(subject, s)}
               onChapterChange={(chId, s) => handleChapterChange(subject, chId, s)} />
-          ))
-        )}
+          ))}
       </div>
 
       <button onClick={handleNext} className="btn-primary w-full text-[16px] px-5 py-3.5 rounded-[10px]">

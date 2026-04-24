@@ -88,15 +88,8 @@ export default function SubjectCard({
 }: Props) {
   const [expanded, setExpanded] = useState(false);
 
-  const borderColor =
-    subjectStatus === "pari"         ? "border-l-[#1CAB55]" :
-    subjectStatus === "revise"       ? "border-l-[#F59E0B]" :
-    subjectStatus === "pari_na"      ? "border-l-[#E8001D]" :
-    subjectStatus === "syllabus_nai" ? "border-l-[#D1D5DB]" :
-    "border-l-transparent";
-
   return (
-    <div className={`bg-white rounded-[20px] border border-[#E5E7EB] overflow-hidden border-l-4 ${borderColor} transition-shadow hover:shadow-md`}>
+    <div className="bg-white rounded-[20px] border border-[#E5E7EB] overflow-hidden transition-shadow hover:shadow-md" style={{ boxShadow: "0 1px 4px rgba(17,24,39,0.04)" }}>
       <div className="p-4">
         {/* Subject name */}
         <div className="flex items-start justify-between gap-2 mb-3">

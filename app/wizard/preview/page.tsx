@@ -40,7 +40,7 @@ export default function PreviewPage() {
   // Scroll: one continuous rAF loop over 3 s, accounts for viewport height
   useEffect(() => {
     if (!data) return;
-    const TOTAL_MS = 3200; // slightly longer than reveal so scroll finishes cleanly
+    const TOTAL_MS = 1800; // fast but smooth — finishes ~600ms after reveal
     const startTime = performance.now();
     let rafId: number;
 

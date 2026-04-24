@@ -370,8 +370,8 @@ body{font-family:'Inter',sans-serif;font-size:9pt;color:#111827;background:#EEF2
 @media print{
   @page{size:A4 portrait;margin:12mm 13mm}
   body{background:white}
-  .page{margin:0;box-shadow:none;padding:0;break-after:page}
-  .page:last-child{break-after:auto}
+  .page{margin:0;box-shadow:none;padding:0}
+  .page:not(:last-child){break-after:page}
   .days-2col{column-count:2;column-gap:8mm}
 }
 </style>

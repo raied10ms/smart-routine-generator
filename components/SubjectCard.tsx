@@ -51,9 +51,12 @@ function FaceSad({ size = 16, color = "currentColor" }: { size?: number; color?:
 function FaceVictory({ size = 16, color = "currentColor" }: { size?: number; color?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
-      <path d="M6 10V5.5a1 1 0 0 1 2 0V8" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M8 7.5V5a1 1 0 0 1 2 0V8" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M10 6.5a1 1 0 0 1 2 0V9c0 2-1.5 4-4 4S4 11 4 9V8a1 1 0 0 1 2 0v2" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      {/* Index finger — spreads left */}
+      <path d="M7.5 12 L5 4" stroke={color} strokeWidth="1.6" strokeLinecap="round"/>
+      {/* Middle finger — spreads right */}
+      <path d="M8.5 12 L11 4" stroke={color} strokeWidth="1.6" strokeLinecap="round"/>
+      {/* Palm base */}
+      <path d="M5 12 Q8 14 11 12" stroke={color} strokeWidth="1.4" strokeLinecap="round" fill="none"/>
     </svg>
   );
 }

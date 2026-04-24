@@ -13,45 +13,19 @@ interface Props {
   onChapterChange: (chapterId: string, status: AssessmentStatus) => void;
 }
 
-// ── Face SVGs ────────────────────────────────────────────────────────────────
+// ── Emoji faces ───────────────────────────────────────────────────────────────
 
-function FaceHappy({ size = 16, color = "currentColor" }: { size?: number; color?: string }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
-      <circle cx="8" cy="8" r="7" stroke={color} strokeWidth="1.5"/>
-      <circle cx="5.5" cy="6.5" r="0.8" fill={color}/>
-      <circle cx="10.5" cy="6.5" r="0.8" fill={color}/>
-      <path d="M5 9.5 Q8 12.5 11 9.5" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-  );
+function FaceHappy({ size = 16 }: { size?: number; color?: string }) {
+  return <span style={{ fontSize: size * 0.95, lineHeight: 1, display: "inline-block" }}>😊</span>;
 }
-
-function FaceNeutral({ size = 16, color = "currentColor" }: { size?: number; color?: string }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
-      <circle cx="8" cy="8" r="7" stroke={color} strokeWidth="1.5"/>
-      <circle cx="5.5" cy="6.5" r="0.8" fill={color}/>
-      <circle cx="10.5" cy="6.5" r="0.8" fill={color}/>
-      <line x1="5.5" y1="10.5" x2="10.5" y2="10.5" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-  );
+function FaceNeutral({ size = 16 }: { size?: number; color?: string }) {
+  return <span style={{ fontSize: size * 0.95, lineHeight: 1, display: "inline-block" }}>😐</span>;
 }
-
-function FaceSad({ size = 16, color = "currentColor" }: { size?: number; color?: string }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
-      <circle cx="8" cy="8" r="7" stroke={color} strokeWidth="1.5"/>
-      <circle cx="5.5" cy="6.5" r="0.8" fill={color}/>
-      <circle cx="10.5" cy="6.5" r="0.8" fill={color}/>
-      <path d="M5 11.5 Q8 8.5 11 11.5" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-  );
+function FaceSad({ size = 16 }: { size?: number; color?: string }) {
+  return <span style={{ fontSize: size * 0.95, lineHeight: 1, display: "inline-block" }}>😢</span>;
 }
-
 function FaceVictory({ size = 16 }: { size?: number; color?: string }) {
-  return (
-    <span style={{ fontSize: size * 0.9, lineHeight: 1, display: "inline-block" }}>✌️</span>
-  );
+  return <span style={{ fontSize: size * 0.9, lineHeight: 1, display: "inline-block" }}>✌️</span>;
 }
 
 // ── Status button config ─────────────────────────────────────────────────────

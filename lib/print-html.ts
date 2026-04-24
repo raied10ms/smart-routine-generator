@@ -152,9 +152,9 @@ function renderDiagnosis(assessment: Assessment): string {
   };
   // Face SVG paths (inline, single-color)
   const faceSvg: Record<AssessmentStatus, string> = {
-    pari:         `<svg width="11" height="11" viewBox="0 0 16 16" fill="none" style="vertical-align:middle;margin-right:2px"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="5.5" cy="6.5" r=".8" fill="currentColor"/><circle cx="10.5" cy="6.5" r=".8" fill="currentColor"/><path d="M5 9.5 Q8 12.5 11 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-    revise:       `<svg width="11" height="11" viewBox="0 0 16 16" fill="none" style="vertical-align:middle;margin-right:2px"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="5.5" cy="6.5" r=".8" fill="currentColor"/><circle cx="10.5" cy="6.5" r=".8" fill="currentColor"/><line x1="5.5" y1="10.5" x2="10.5" y2="10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-    pari_na:      `<svg width="11" height="11" viewBox="0 0 16 16" fill="none" style="vertical-align:middle;margin-right:2px"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="5.5" cy="6.5" r=".8" fill="currentColor"/><circle cx="10.5" cy="6.5" r=".8" fill="currentColor"/><path d="M5 11.5 Q8 8.5 11 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    pari:         `<span style="font-size:10pt;vertical-align:middle;margin-right:2px">😊</span>`,
+    revise:       `<span style="font-size:10pt;vertical-align:middle;margin-right:2px">😐</span>`,
+    pari_na:      `<span style="font-size:10pt;vertical-align:middle;margin-right:2px">😢</span>`,
     syllabus_nai: `<span style="font-size:10pt;vertical-align:middle;margin-right:2px">✌️</span>`,
   };
 

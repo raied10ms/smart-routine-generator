@@ -11,7 +11,7 @@ export default function Home() {
       </div>
 
       <h1 className="text-[28px] sm:text-[38px] font-bold text-white leading-tight tracking-tight mb-4">
-        তোমার রুটিন<br />তৈরি করো
+        তোমার স্মার্ট রুটিন<br />বানিয়ে নাও
       </h1>
       <p className="text-white/75 text-[15px] sm:text-[17px] mb-10 max-w-xs">
         মাত্র ৩ মিনিটে — নাম সহ Personalized রুটিন ও PDF

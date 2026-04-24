@@ -40,11 +40,11 @@ export async function POST(req: NextRequest) {
     markPdfReady(printId);
   });
 
-  const base = req.nextUrl.origin;
+  // Return relative paths — client uses window.location.origin for absolute URLs
   return NextResponse.json({
     printId,
-    htmlUrl: `${base}/api/print/html/${printId}`,
-    pdfUrl:  `${base}/api/print/pdf/${printId}`,
+    htmlPath: `/api/print/html/${printId}`,
+    pdfPath:  `/api/print/pdf/${printId}`,
     filename,
   });
 }

@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 
 interface PrintResult {
   printId: string;
-  htmlUrl: string;
-  pdfUrl: string;
+  htmlPath: string;
+  pdfPath: string;
   filename: string;
 }
 
@@ -27,12 +27,12 @@ export default function CapturePage() {
     if (!saved.routinePreview) router.push("/wizard/duration");
   }, [router]);
 
-  // Poll for PDF readiness
+  // Poll for PDF readiness using relative path
   useEffect(() => {
     if (!result || pdfReady) return;
     pollRef.current = setInterval(async () => {
       try {
-        const res = await fetch(result.pdfUrl, { method: "HEAD" });
+        const res = await fetch(result.pdfPath, { method: "HEAD" });
         if (res.ok) { setPdfReady(true); clearInterval(pollRef.current!); }
       } catch { /* ignore */ }
     }, 2000);
@@ -82,8 +82,8 @@ export default function CapturePage() {
       const data: PrintResult = await genRes.json();
       setResult(data);
 
-      // Open print HTML in new tab → auto-print dialog triggers
-      window.open(data.htmlUrl, "_blank");
+      // Open print HTML in new tab using relative path → auto-print dialog triggers
+      window.open(data.htmlPath, "_blank");
     } catch (err) {
       setError(err instanceof Error ? err.message : "সমস্যা হয়েছে, আবার চেষ্টা করো।");
     } finally {
@@ -93,7 +93,9 @@ export default function CapturePage() {
 
   async function copyLink() {
     if (!result) return;
-    await navigator.clipboard.writeText(result.htmlUrl);
+    // Build absolute URL client-side so it always uses the real host
+    const absoluteUrl = `${window.location.origin}${result.htmlPath}`;
+    await navigator.clipboard.writeText(absoluteUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
@@ -114,7 +116,7 @@ export default function CapturePage() {
         <div className="flex flex-col gap-3">
           {/* Re-open print */}
           <a
-            href={result.htmlUrl}
+            href={result.htmlPath}
             target="_blank"
             rel="noopener"
             className="flex items-center gap-3 bg-ten-ink text-white px-4 py-3.5 rounded-xl font-bold text-[14px] hover:bg-gray-900 transition-colors"
@@ -139,7 +141,7 @@ export default function CapturePage() {
           {/* PDF download */}
           {pdfReady ? (
             <a
-              href={result.pdfUrl}
+              href={result.pdfPath}
               download={result.filename}
               className="btn-red flex items-center justify-center gap-3 px-4 py-3.5 rounded-xl font-bold text-[14px]"
             >

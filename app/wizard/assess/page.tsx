@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import type { Chapter, Assessment, AssessmentStatus } from "@/lib/types";
+import type { Chapter, Assessment, AssessmentStatus, Grade, Group } from "@/lib/types";
+import { getSubjects } from "@/lib/subjects";
 import SubjectCard from "@/components/SubjectCard";
 import { toBanglaNum } from "@/lib/utils";
 
@@ -25,19 +26,33 @@ export default function AssessPage() {
 
   useEffect(() => {
     const saved = JSON.parse(sessionStorage.getItem("wizard") || "{}");
-    if (!saved.grade) { router.push("/wizard/info"); return; }
+    if (!saved.grade || !saved.group) { router.push("/wizard/info"); return; }
     if (saved.assessment) setAssessment(saved.assessment);
 
-    fetch(`/api/chapters?grade=${encodeURIComponent(saved.grade)}`)
+    fetch(`/api/chapters?grade=${encodeURIComponent(saved.grade)}&group=${encodeURIComponent(saved.group)}`)
       .then((r) => r.json())
       .then((data) => { setChapters(data); setLoading(false); });
   }, [router]);
 
-  const subjects = chapters.reduce<Record<string, Chapter[]>>((acc, ch) => {
+  const subjectMap = chapters.reduce<Record<string, Chapter[]>>((acc, ch) => {
     if (!acc[ch.subject]) acc[ch.subject] = [];
     acc[ch.subject].push(ch);
     return acc;
   }, {});
+
+  // Build ordered subject entries using canonical group order
+  const subjectOrderList: string[] = (() => {
+    if (typeof window === "undefined") return Object.keys(subjectMap);
+    const saved = JSON.parse(sessionStorage.getItem("wizard") || "{}");
+    const order = getSubjects(saved.grade as Grade, saved.group as Group);
+    // Use order list, fall back to any extras not in the list
+    const extras = Object.keys(subjectMap).filter((s) => !order.includes(s));
+    return [...order.filter((s) => s in subjectMap), ...extras];
+  })();
+
+  const subjects: Record<string, Chapter[]> = Object.fromEntries(
+    subjectOrderList.map((s) => [s, subjectMap[s] ?? []])
+  );
 
   function getSubjectStatus(subject: string): AssessmentStatus | null {
     const chStatuses = assessment[subject];

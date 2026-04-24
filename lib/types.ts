@@ -1,4 +1,5 @@
 export type Grade = "SSC" | "HSC";
+export type Group = "বিজ্ঞান" | "ব্যবসায় শিক্ষা" | "মানবিক";
 
 export type AssessmentStatus = "pari" | "revise" | "pari_na" | "syllabus_nai";
 
@@ -41,6 +42,7 @@ export interface RoutineDay {
 export interface WizardState {
   name: string;
   grade: Grade | null;
+  group: Group | null;
   assessment: Assessment;
   durationDays: number | null;
   routinePreview: RoutineDay[] | null;

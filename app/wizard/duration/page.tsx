@@ -109,7 +109,7 @@ export default function DurationPage() {
     const apiCall = fetch("/api/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ grade: saved.grade, assessment: saved.assessment, durationDays: selected }),
+      body: JSON.stringify({ grade: saved.grade, group: saved.group, assessment: saved.assessment, durationDays: selected }),
     }).then((res) => res.json());
     const [{ routine }] = await Promise.all([apiCall, minWait]);
     sessionStorage.setItem("wizard", JSON.stringify({ ...saved, durationDays: selected, routinePreview: routine }));

@@ -1,26 +1,22 @@
-export type Section = "বিজ্ঞান" | "মানবিক" | "বাণিজ্য" | "কলা";
+export type Grade = "SSC" | "HSC";
 
 export type AssessmentStatus = "pari" | "revise" | "pari_na" | "syllabus_nai";
 
-export type QuestionType = "CQ+MCQ" | "Math" | "MCQ-only" | "English-1" | "English-2" | "English-3" | "English-4";
-
 export interface Chapter {
   id: number;
-  section: Section;
+  grade: Grade;
   subject: string;
-  chapter_number: number;
+  chapter_num: number;
   chapter_name_bn: string;
-  chapter_name_en: string | null;
-  question_type: QuestionType;
-  cq_importance: number;
   mcq_importance: number;
-  math_importance: number;
-  time_cq_min: number;
-  time_mcq_min: number;
-  time_math_min: number;
-  time_revision_min: number;
+  sq_importance: number;
+  cq_importance: number;
+  time_pari_min: number;
+  time_revise_min: number;
+  time_parina_min: number;
 }
 
+// key = subject, value = { chapterId: status }
 export type Assessment = Record<string, Record<string, AssessmentStatus>>;
 
 export interface RoutineEntry {
@@ -43,7 +39,7 @@ export interface RoutineDay {
 
 export interface WizardState {
   name: string;
-  section: Section | null;
+  grade: Grade | null;
   assessment: Assessment;
   durationDays: number | null;
   routinePreview: RoutineDay[] | null;

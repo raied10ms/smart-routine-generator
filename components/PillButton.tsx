@@ -8,11 +8,26 @@ interface Props {
 }
 
 const variantStyles = {
-  success: { active: "bg-[var(--color-success)] text-white", inactive: "bg-[var(--color-surface)] text-[var(--color-success)] border border-[var(--color-success)]" },
-  warning: { active: "bg-[var(--color-warning)] text-white", inactive: "bg-[var(--color-surface)] text-[var(--color-warning)] border border-[var(--color-warning)]" },
-  error: { active: "bg-[var(--color-error)] text-white", inactive: "bg-[var(--color-surface)] text-[var(--color-error)] border border-[var(--color-error)]" },
-  gray: { active: "bg-[var(--color-gray)] text-white", inactive: "bg-[var(--color-surface)] text-[var(--color-gray)] border border-[var(--color-gray)]" },
-  default: { active: "bg-[var(--color-primary)] text-white", inactive: "bg-[var(--color-surface)] text-[var(--color-text)] border border-[var(--color-border)]" },
+  success: {
+    active:   "bg-ten-green text-white border-ten-green",
+    inactive: "bg-white text-ten-green border-ten-green/50 hover:border-ten-green",
+  },
+  warning: {
+    active:   "bg-[#F59E0B] text-white border-[#F59E0B]",
+    inactive: "bg-white text-[#92400E] border-[#FDE68A] hover:border-[#F59E0B]",
+  },
+  error: {
+    active:   "bg-ten-red text-white border-ten-red",
+    inactive: "bg-white text-ten-red border-ten-red/40 hover:border-ten-red",
+  },
+  gray: {
+    active:   "bg-gray-500 text-white border-gray-500",
+    inactive: "bg-white text-gray-500 border-gray-300 hover:border-gray-400",
+  },
+  default: {
+    active:   "bg-ten-red text-white border-ten-red",
+    inactive: "bg-white text-gray-600 border-gray-200 hover:border-ten-red",
+  },
 };
 
 export default function PillButton({ label, selected, variant, onClick }: Props) {
@@ -21,7 +36,9 @@ export default function PillButton({ label, selected, variant, onClick }: Props)
     <button
       type="button"
       onClick={onClick}
-      className={`cursor-pointer px-3 py-1.5 rounded-[var(--radius-pill)] text-[13px] font-medium transition-colors hover:opacity-80 ${selected ? styles.active : styles.inactive}`}
+      className={`cursor-pointer px-3 py-1.5 rounded-full text-[13px] font-semibold border transition-all hover:opacity-90 ${
+        selected ? styles.active : styles.inactive
+      }`}
     >
       {label}
     </button>

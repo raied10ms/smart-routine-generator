@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function ChapterRow({ chapter, status, onChange }: Props) {
-  const importance = Math.max(chapter.cq_importance, chapter.mcq_importance, chapter.math_importance);
+  const importance = Math.max(chapter.mcq_importance, chapter.sq_importance, chapter.cq_importance);
   const stars = "\u2605".repeat(importance) + "\u2606".repeat(5 - importance);
 
   return (

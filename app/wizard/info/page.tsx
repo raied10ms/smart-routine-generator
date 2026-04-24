@@ -2,52 +2,77 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import type { Section } from "@/lib/types";
-
-const sections: Section[] = ["বিজ্ঞান", "মানবিক", "বাণিজ্য"];
+import type { Grade } from "@/lib/types";
 
 export default function InfoPage() {
   const router = useRouter();
   const [name, setName] = useState("");
-  const [section, setSection] = useState<Section | null>(null);
+  const [grade, setGrade] = useState<Grade | null>(null);
 
   useEffect(() => {
-    const saved = sessionStorage.getItem("wizard");
-    if (saved) {
-      const data = JSON.parse(saved);
-      if (data.name) setName(data.name);
-      if (data.section) setSection(data.section);
-    }
+    const saved = JSON.parse(sessionStorage.getItem("wizard") || "{}");
+    if (saved.name)  setName(saved.name);
+    if (saved.grade) setGrade(saved.grade);
   }, []);
 
   function handleNext() {
-    if (!name.trim() || !section) return;
+    if (!name.trim() || !grade) return;
     const existing = JSON.parse(sessionStorage.getItem("wizard") || "{}");
-    sessionStorage.setItem("wizard", JSON.stringify({ ...existing, name: name.trim(), section }));
+    sessionStorage.setItem("wizard", JSON.stringify({ ...existing, name: name.trim(), grade }));
     router.push("/wizard/assess");
   }
 
   return (
-    <div>
-      <h1 className="text-[22px] font-bold mb-6">তোমার তথ্য দাও</h1>
-      <label className="block mb-4">
-        <span className="text-[14px] text-[var(--color-text-muted)] mb-1 block">তোমার নাম</span>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="নাম লেখো"
-          className="w-full px-4 py-3 rounded-[var(--radius-button)] bg-[var(--color-surface)] border border-[var(--color-border)] text-[15px] outline-none focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 transition-all" />
+    <div className="pb-8">
+      <h1 className="text-[22px] font-bold text-ten-ink mb-1">তোমার তথ্য দাও</h1>
+      <p className="text-sm text-gray-400 mb-6">ধাপ ১: নাম ও পরীক্ষা</p>
+
+      <label className="block mb-5">
+        <span className="text-[13px] font-semibold text-gray-500 mb-1.5 block">তোমার নাম</span>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="নাম লেখো"
+          className="input-field-light"
+        />
       </label>
+
       <div className="mb-8">
-        <span className="text-[14px] text-[var(--color-text-muted)] mb-2 block">তোমার বিভাগ</span>
-        <div className="flex gap-2 flex-wrap">
-          {sections.map((s) => (
-            <button key={s} type="button" onClick={() => setSection(s)}
-              className={`cursor-pointer px-5 py-2.5 rounded-[var(--radius-pill)] text-[14px] font-medium transition-colors hover:opacity-80 ${
-                section === s ? "bg-[var(--color-primary)] text-white" : "bg-[var(--color-surface)] border border-[var(--color-border)]"
-              }`}>{s}</button>
+        <span className="text-[13px] font-semibold text-gray-500 mb-2.5 block">কোন পরীক্ষার জন্য রুটিন?</span>
+        <div className="flex gap-3">
+          {(["SSC", "HSC"] as Grade[]).map((g) => (
+            <button
+              key={g}
+              type="button"
+              onClick={() => setGrade(g)}
+              className={`flex-1 py-5 rounded-2xl border-2 text-center transition-all duration-200 cursor-pointer ${
+                grade === g
+                  ? "border-ten-red bg-[rgba(232,0,29,0.06)] ring-2 ring-ten-red/10"
+                  : "border-gray-200 bg-white hover:border-ten-red/40"
+              }`}
+            >
+              <div className="text-[26px] font-bold text-ten-ink leading-none">{g}</div>
+              <div className="text-[11px] text-gray-400 mt-1.5">
+                {g === "SSC" ? "মাধ্যমিক পরীক্ষা" : "উচ্চমাধ্যমিক পরীক্ষা"}
+              </div>
+              {grade === g && (
+                <div className="mt-2 w-4 h-4 rounded-full bg-ten-red flex items-center justify-center mx-auto">
+                  <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+              )}
+            </button>
           ))}
         </div>
       </div>
-      <button onClick={handleNext} disabled={!name.trim() || !section}
-        className="cursor-pointer w-full py-3.5 rounded-[var(--radius-button)] bg-[var(--color-primary)] text-white font-semibold text-[16px] disabled:opacity-40 hover:bg-[var(--color-primary)]/90 transition-colors">
+
+      <button
+        onClick={handleNext}
+        disabled={!name.trim() || !grade}
+        className="btn-primary w-full text-[16px] px-5 py-3.5 rounded-[10px]"
+      >
         পরের ধাপ →
       </button>
     </div>

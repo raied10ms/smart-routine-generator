@@ -71,13 +71,14 @@ function splitByType(ch: ChapterWithStatus, totalMin: number, phase: 1 | 2 | 3):
   if (types.length === 0 || totalMin <= 0) return [];
 
   const totalImp = types.reduce((s, t) => s + t.imp, 0);
+  const importance = Math.max(ch.mcq_importance, ch.sq_importance, ch.cq_importance);
   const tasks: PhaseTask[] = [];
   for (const t of types) {
     const rounded = roundTo30((totalMin * t.imp) / totalImp);
     if (rounded >= 30) {
       tasks.push({
         chapterId: ch.id, subject: ch.subject, chapterName: ch.chapter_name_bn,
-        taskType: taskLabel(t.key, phase), timeMin: rounded, phase,
+        taskType: taskLabel(t.key, phase), timeMin: rounded, phase, importance,
       });
     }
   }
@@ -86,12 +87,13 @@ function splitByType(ch: ChapterWithStatus, totalMin: number, phase: 1 | 2 | 3):
 
 function getTasksForChapter(ch: ChapterWithStatus): PhaseTask[] {
   if (ch.status === "syllabus_nai") return [];
+  const importance = Math.max(ch.mcq_importance, ch.sq_importance, ch.cq_importance);
 
   if (ch.status === "pari") {
     if (ch.time_pari_min <= 0) return [];
     return [{
       chapterId: ch.id, subject: ch.subject, chapterName: ch.chapter_name_bn,
-      taskType: "রিভিশন", timeMin: roundTo30(ch.time_pari_min), phase: 3,
+      taskType: "রিভিশন", timeMin: roundTo30(ch.time_pari_min), phase: 3, importance,
     }];
   }
 
@@ -103,7 +105,7 @@ function getTasksForChapter(ch: ChapterWithStatus): PhaseTask[] {
     const tasks: PhaseTask[] = [...splitByType(ch, p2Min, 2)];
     if (p3Min >= 30) tasks.push({
       chapterId: ch.id, subject: ch.subject, chapterName: ch.chapter_name_bn,
-      taskType: "রিভিশন", timeMin: roundTo30(p3Min), phase: 3,
+      taskType: "রিভিশন", timeMin: roundTo30(p3Min), phase: 3, importance,
     });
     return tasks;
   }
@@ -122,7 +124,7 @@ function getTasksForChapter(ch: ChapterWithStatus): PhaseTask[] {
     ];
     if (reviseMin >= 30) tasks.push({
       chapterId: ch.id, subject: ch.subject, chapterName: ch.chapter_name_bn,
-      taskType: "রিভিশন", timeMin: roundTo30(reviseMin), phase: 3,
+      taskType: "রিভিশন", timeMin: roundTo30(reviseMin), phase: 3, importance,
     });
     return tasks;
   }

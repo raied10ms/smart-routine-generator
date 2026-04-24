@@ -25,6 +25,7 @@ export interface RoutineEntry {
   chapterName: string;
   taskType: string;
   timeMin: number;
+  importance?: number;  // max(mcq, sq, cq) — used for star display; absent in old DB rows
 }
 
 export interface RoutineDay {

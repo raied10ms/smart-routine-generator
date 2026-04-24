@@ -32,10 +32,60 @@ function phaseDayRange(routine: RoutineDay[], phase: 1 | 2 | 3): string {
   return `Day ${days[0].dayNumber} – Day ${days[days.length - 1].dayNumber}`;
 }
 
-function taskBadgeStyle(taskType: string): string {
-  if (taskType.includes("MCQ")) return "background:#FEF3C7;color:#92400E;border:1px solid #FDE68A";
-  if (taskType.includes("SQ"))  return "background:#DBEAFE;color:#1E40AF;border:1px solid #BFDBFE";
-  if (taskType.includes("CQ"))  return "background:#F3E8FF;color:#6B21A8;border:1px solid #E9D5FF";
+// ── Merge helpers (same logic as RoutineTable) ──────────────────────────────
+
+type PrintCategory = "বেসিক" | "অনুশীলন" | "রিভিশন";
+
+interface MergedRow {
+  chapterId: number;
+  chapterName: string;
+  category: PrintCategory;
+  types: string[];
+  totalTimeMin: number;
+  importance: number;
+}
+
+function categoryOf(taskType: string): PrintCategory {
+  if (taskType.includes("বেসিক"))   return "বেসিক";
+  if (taskType.includes("অনুশীলন")) return "অনুশীলন";
+  return "রিভিশন";
+}
+
+function mergeForPrint(entries: RoutineEntry[]): Record<string, MergedRow[]> {
+  const bySubject: Record<string, Map<string, MergedRow>> = {};
+  for (const e of entries) {
+    const cat = categoryOf(e.taskType);
+    const key = `${e.chapterId}::${cat}`;
+    if (!bySubject[e.subject]) bySubject[e.subject] = new Map();
+    const map = bySubject[e.subject];
+    if (!map.has(key)) {
+      map.set(key, {
+        chapterId: e.chapterId, chapterName: e.chapterName,
+        category: cat, types: [], totalTimeMin: 0,
+        importance: e.importance ?? 0,
+      });
+    }
+    const m = map.get(key)!;
+    m.totalTimeMin += e.timeMin;
+    const t = e.taskType.includes("MCQ") ? "MCQ" : e.taskType.includes("SQ") ? "SQ" : e.taskType.includes("CQ") ? "CQ" : null;
+    if (t && !m.types.includes(t)) m.types.push(t);
+  }
+  const result: Record<string, MergedRow[]> = {};
+  for (const [subj, map] of Object.entries(bySubject)) {
+    result[subj] = [...map.values()];
+  }
+  return result;
+}
+
+function badgeLabel(m: MergedRow): string {
+  if (m.category === "রিভিশন") return "রিভিশন";
+  if (m.types.length === 0 || m.types.length >= 3) return m.category;
+  return `${m.types.join("+")} ${m.category}`;
+}
+
+function categoryBadgeStyle(cat: PrintCategory): string {
+  if (cat === "বেসিক")    return "background:#FFF5F5;color:#931212;border:1px solid #FECACA";
+  if (cat === "অনুশীলন") return "background:#FEF3C7;color:#92400E;border:1px solid #FDE68A";
   return "background:#ECFDF5;color:#065F46;border:1px solid #6EE7B7";
 }
 
@@ -58,26 +108,25 @@ function dayHeaderBg(day: RoutineDay): string {
 }
 
 function renderTaskRows(entries: RoutineEntry[]): string {
-  const grouped: Record<string, RoutineEntry[]> = {};
-  for (const e of entries) {
-    if (!grouped[e.subject]) grouped[e.subject] = [];
-    grouped[e.subject].push(e);
-  }
+  const bySubject = mergeForPrint(entries);
 
-  return Object.entries(grouped).map(([subject, rows]) => `
+  return Object.entries(bySubject).map(([subject, rows]) => `
     <tr style="background:#F9FAFB">
-      <td colspan="4" style="padding:3px 10px;font-size:7pt;font-weight:700;color:#6B7280;letter-spacing:.3px;border-bottom:1px dashed #E5E7EB">${subject}</td>
+      <td colspan="4" style="padding:2px 8px;font-size:6.5pt;font-weight:700;color:#6B7280;letter-spacing:.4px;text-transform:uppercase;border-bottom:1px dashed #E5E7EB">${subject}</td>
     </tr>
-    ${rows.map((e) => `
+    ${rows.map((m) => `
     <tr>
-      <td style="width:22px;text-align:center;padding:4px 6px;border-bottom:1px solid #F3F4F6">
-        <span style="display:inline-block;width:12px;height:12px;border:1.5px solid #9CA3AF;border-radius:2px"></span>
+      <td style="width:20px;text-align:center;padding:3px 4px;border-bottom:1px solid #F3F4F6">
+        <span style="display:inline-block;width:11px;height:11px;border:1.5px solid #9CA3AF;border-radius:2px"></span>
       </td>
-      <td style="padding:4px 6px 4px 2px;border-bottom:1px solid #F3F4F6;font-size:8.5pt;color:#111827;font-family:'Hind Siliguri',sans-serif;line-height:1.35">${e.chapterName}</td>
-      <td style="width:80px;text-align:center;padding:4px 4px;border-bottom:1px solid #F3F4F6">
-        <span style="font-size:7pt;font-weight:700;padding:2px 5px;border-radius:3px;display:inline-block;${taskBadgeStyle(e.taskType)}">${e.taskType}</span>
+      <td style="padding:3px 5px 3px 2px;border-bottom:1px solid #F3F4F6;font-size:8pt;color:#111827;font-family:'Hind Siliguri',sans-serif;line-height:1.3">
+        ${m.chapterName}
+        ${m.importance > 0 ? `<span style="color:#F59E0B;font-size:7pt;margin-left:3px">${"★".repeat(m.importance)}</span>` : ""}
       </td>
-      <td style="width:26px;text-align:right;padding:4px 8px 4px 0;border-bottom:1px solid #F3F4F6;font-size:7pt;color:#9CA3AF">${fmtTime(e.timeMin)}</td>
+      <td style="width:72px;text-align:center;padding:3px 3px;border-bottom:1px solid #F3F4F6">
+        <span style="font-size:6.5pt;font-weight:700;padding:1.5px 4px;border-radius:3px;display:inline-block;${categoryBadgeStyle(m.category)}">${badgeLabel(m)}</span>
+      </td>
+      <td style="width:24px;text-align:right;padding:3px 7px 3px 0;border-bottom:1px solid #F3F4F6;font-size:7pt;color:#9CA3AF">${fmtTime(m.totalTimeMin)}</td>
     </tr>`).join("")}
   `).join("");
 }

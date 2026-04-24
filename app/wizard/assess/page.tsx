@@ -6,11 +6,22 @@ import type { Chapter, Assessment, AssessmentStatus } from "@/lib/types";
 import SubjectCard from "@/components/SubjectCard";
 import { toBanglaNum } from "@/lib/utils";
 
+type Filter = "all" | AssessmentStatus;
+
+const FILTERS: { key: Filter; label: string; dot: string }[] = [
+  { key: "all",          label: "সব বিষয়",            dot: "#E8001D" },
+  { key: "pari",         label: "পারি",                dot: "#1CAB55" },
+  { key: "revise",       label: "রিভাইজ দিলে পারবো",  dot: "#F59E0B" },
+  { key: "pari_na",      label: "একদম পারিনা",         dot: "#E8001D" },
+  { key: "syllabus_nai", label: "সিলেবাসেই নাই",       dot: "#9CA3AF" },
+];
+
 export default function AssessPage() {
   const router = useRouter();
   const [chapters, setChapters] = useState<Chapter[]>([]);
   const [assessment, setAssessment] = useState<Assessment>({});
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState<Filter>("all");
 
   useEffect(() => {
     const saved = JSON.parse(sessionStorage.getItem("wizard") || "{}");
@@ -38,15 +49,16 @@ export default function AssessPage() {
 
   const stats = useMemo(() => {
     const subjectNames = Object.keys(subjects);
-    let pari = 0, revise = 0, pariNa = 0, syllabusNai = 0;
+    let pari = 0, revise = 0, pariNa = 0, syllabusNai = 0, unset = 0;
     for (const subject of subjectNames) {
       const status = getSubjectStatus(subject);
       if (status === "pari") pari++;
       else if (status === "revise") revise++;
       else if (status === "pari_na") pariNa++;
       else if (status === "syllabus_nai") syllabusNai++;
+      else unset++;
     }
-    return { total: subjectNames.length, pari, revise, pariNa, syllabusNai };
+    return { total: subjectNames.length, pari, revise, pariNa, syllabusNai, unset };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subjects, assessment]);
 
@@ -69,13 +81,18 @@ export default function AssessPage() {
     router.push("/wizard/duration");
   }
 
+  const filteredSubjects = Object.entries(subjects).filter(([subject]) => {
+    if (filter === "all") return true;
+    return getSubjectStatus(subject) === filter;
+  });
+
   if (loading) {
     return (
       <div className="pb-8">
-        <h1 className="text-[22px] font-bold text-ten-ink mb-1">কোন বিষয়ে কী অবস্থা?</h1>
+        <h1 className="text-[22px] font-bold text-ten-ink mb-1">কোন বিষয়ের কী অবস্থা?</h1>
         <p className="text-sm text-gray-400 mb-6">ধাপ ২: বিষয় মূল্যায়ন</p>
         <div className="flex flex-col gap-3">
-          {[1,2,3,4].map((i) => <div key={i} className="skeleton h-[90px] w-full" />)}
+          {[1,2,3,4].map((i) => <div key={i} className="skeleton h-[110px] w-full" />)}
         </div>
       </div>
     );
@@ -83,48 +100,73 @@ export default function AssessPage() {
 
   return (
     <div className="pb-8">
-      <h1 className="text-[22px] font-bold text-ten-ink mb-1">কোন বিষয়ে কী অবস্থা?</h1>
-      <p className="text-[13px] text-gray-400 mb-4">ধাপ ২: প্রতিটি বিষয়ের পাশে অবস্থা বেছে নাও</p>
+      <div className="mb-4">
+        <h1 className="text-[22px] font-bold text-ten-ink mb-1">কোন বিষয়ের কী অবস্থা?</h1>
+        <p className="text-[13px] text-gray-400">ধাপ ২: প্রতিটি বিষয়ের পাশে অবস্থা বেছে নাও</p>
+      </div>
 
-      <div className="sticky top-1 z-10 bg-white/95 backdrop-blur shadow-sm rounded-xl px-3 py-2.5 mb-4 flex flex-wrap gap-1.5 items-center ring-1 ring-gray-100">
-        <span className="badge-muted">
-          <svg width="6" height="6" viewBox="0 0 8 8" fill="#4B5563"><circle cx="4" cy="4" r="4"/></svg>
-          {toBanglaNum(stats.total)}টি বিষয়
-        </span>
+      {/* Progress chips */}
+      <div className="flex flex-wrap gap-2 mb-4">
         {stats.pari > 0 && (
-          <span className="badge-success">
-            <svg width="6" height="6" viewBox="0 0 8 8" fill="#0E7B4F"><circle cx="4" cy="4" r="4"/></svg>
-            {toBanglaNum(stats.pari)}টি পারি
-          </span>
+          <div className="flex items-center gap-1.5 bg-white border border-[#E5E7EB] rounded-full px-3 py-1.5 text-[12px] font-medium text-[#374151]">
+            <span className="w-2 h-2 rounded-full bg-[#1CAB55] shrink-0" />
+            <span>পারি — {toBanglaNum(stats.pari)}</span>
+          </div>
         )}
         {stats.revise > 0 && (
-          <span className="badge-warning">
-            <svg width="6" height="6" viewBox="0 0 8 8" fill="#92400E"><circle cx="4" cy="4" r="4"/></svg>
-            {toBanglaNum(stats.revise)}টি রিভাইজ
-          </span>
+          <div className="flex items-center gap-1.5 bg-white border border-[#E5E7EB] rounded-full px-3 py-1.5 text-[12px] font-medium text-[#374151]">
+            <span className="w-2 h-2 rounded-full bg-[#F59E0B] shrink-0" />
+            <span>রিভাইজ দিলে — {toBanglaNum(stats.revise)}</span>
+          </div>
         )}
         {stats.pariNa > 0 && (
-          <span className="badge-error">
-            <svg width="6" height="6" viewBox="0 0 8 8" fill="#931212"><circle cx="4" cy="4" r="4"/></svg>
-            {toBanglaNum(stats.pariNa)}টি পারি না
-          </span>
+          <div className="flex items-center gap-1.5 bg-white border border-[#E5E7EB] rounded-full px-3 py-1.5 text-[12px] font-medium text-[#374151]">
+            <span className="w-2 h-2 rounded-full bg-[#E8001D] shrink-0" />
+            <span>পারি না — {toBanglaNum(stats.pariNa)}</span>
+          </div>
         )}
-        {stats.syllabusNai > 0 && (
-          <span className="badge-muted">
-            <svg width="6" height="6" viewBox="0 0 8 8" fill="#4B5563"><circle cx="4" cy="4" r="4"/></svg>
-            {toBanglaNum(stats.syllabusNai)}টি সিলেবাসে নাই
-          </span>
+        {stats.unset > 0 && (
+          <div className="flex items-center gap-1.5 bg-white border border-[#E5E7EB] rounded-full px-3 py-1.5 text-[12px] font-medium text-[#374151]">
+            <span className="w-2 h-2 rounded-full bg-[#D1D5DB] shrink-0" />
+            <span>বাকি — {toBanglaNum(stats.unset)}</span>
+          </div>
         )}
       </div>
 
-      <div className="flex flex-col gap-3 mb-6">
-        {Object.entries(subjects).map(([subject, chs]) => (
-          <SubjectCard key={subject} subject={subject} chapters={chs}
-            subjectStatus={getSubjectStatus(subject)}
-            chapterStatuses={assessment[subject] || {}}
-            onSubjectChange={(s) => handleSubjectChange(subject, s)}
-            onChapterChange={(chId, s) => handleChapterChange(subject, chId, s)} />
-        ))}
+      {/* Filter tabs */}
+      <div className="overflow-x-auto -mx-4 px-4 mb-4 scrollbar-none">
+        <div className="flex gap-2 pb-1">
+          {FILTERS.map((f) => (
+            <button
+              key={f.key}
+              type="button"
+              onClick={() => setFilter(f.key)}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full border-[1.5px] text-[13px] font-medium cursor-pointer whitespace-nowrap transition-all shrink-0 ${
+                filter === f.key
+                  ? "bg-[#111827] border-[#111827] text-white"
+                  : "bg-white border-[#E5E7EB] text-[#6B7280] hover:border-[#D1D5DB]"
+              }`}
+            >
+              <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: filter === f.key ? "#fff" : f.dot }} />
+              {f.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Subject cards */}
+      <div className="flex flex-col gap-2.5 mb-6">
+        {filteredSubjects.length === 0 ? (
+          <div className="text-center py-8 text-gray-400 text-[14px]">এই ফিল্টারে কোনো বিষয় নেই</div>
+        ) : (
+          filteredSubjects.map(([subject, chs]) => (
+            <SubjectCard key={subject} subject={subject} chapters={chs}
+              subjectStatus={getSubjectStatus(subject)}
+              chapterStatuses={assessment[subject] || {}}
+              onSubjectChange={(s) => handleSubjectChange(subject, s)}
+              onChapterChange={(chId, s) => handleChapterChange(subject, chId, s)} />
+          ))
+        )}
       </div>
 
       <button onClick={handleNext} className="btn-primary w-full text-[16px] px-5 py-3.5 rounded-[10px]">

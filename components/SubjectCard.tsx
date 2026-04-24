@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import type { Chapter, AssessmentStatus } from "@/lib/types";
-import PillButton from "./PillButton";
-import ChapterRow from "./ChapterRow";
 import { toBanglaNum } from "@/lib/utils";
 
 interface Props {
@@ -15,18 +13,74 @@ interface Props {
   onChapterChange: (chapterId: string, status: AssessmentStatus) => void;
 }
 
-const borderColors: Record<string, string> = {
-  pari:         "border-l-ten-green",
-  revise:       "border-l-[#F59E0B]",
-  pari_na:      "border-l-ten-red",
-  syllabus_nai: "border-l-gray-300",
+// ── Face SVGs ────────────────────────────────────────────────────────────────
+
+function FaceHappy({ size = 16, color = "currentColor" }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+      <circle cx="8" cy="8" r="7" stroke={color} strokeWidth="1.5"/>
+      <circle cx="5.5" cy="6.5" r="0.8" fill={color}/>
+      <circle cx="10.5" cy="6.5" r="0.8" fill={color}/>
+      <path d="M5 9.5 Q8 12.5 11 9.5" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
+function FaceNeutral({ size = 16, color = "currentColor" }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+      <circle cx="8" cy="8" r="7" stroke={color} strokeWidth="1.5"/>
+      <circle cx="5.5" cy="6.5" r="0.8" fill={color}/>
+      <circle cx="10.5" cy="6.5" r="0.8" fill={color}/>
+      <line x1="5.5" y1="10.5" x2="10.5" y2="10.5" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
+function FaceSad({ size = 16, color = "currentColor" }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+      <circle cx="8" cy="8" r="7" stroke={color} strokeWidth="1.5"/>
+      <circle cx="5.5" cy="6.5" r="0.8" fill={color}/>
+      <circle cx="10.5" cy="6.5" r="0.8" fill={color}/>
+      <path d="M5 11.5 Q8 8.5 11 11.5" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
+function FaceVictory({ size = 16, color = "currentColor" }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+      <path d="M6 10V5.5a1 1 0 0 1 2 0V8" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M8 7.5V5a1 1 0 0 1 2 0V8" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M10 6.5a1 1 0 0 1 2 0V9c0 2-1.5 4-4 4S4 11 4 9V8a1 1 0 0 1 2 0v2" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
+// ── Status button config ─────────────────────────────────────────────────────
+
+const STATUS_CONFIG = {
+  pari:         { label: "পারি",                face: FaceHappy,   sel: "bg-[#1CAB55] text-white border-[#0E7B4F]",    idle: "bg-[#ECFDF5] text-[#0E7B4F] border-[#A7F3D0]" },
+  revise:       { label: "রিভাইজ দিলে পারবো", face: FaceNeutral,  sel: "bg-[#F59E0B] text-white border-[#D97706]",    idle: "bg-[#FFFBEB] text-[#92400E] border-[#FDE68A]" },
+  pari_na:      { label: "একদম পারিনা",        face: FaceSad,     sel: "bg-[#E8001D] text-white border-[#B91C1C]",    idle: "bg-[#FEF2F2] text-[#991B1B] border-[#FCA5A5]" },
+  syllabus_nai: { label: "সিলেবাসেই নাই",      face: FaceVictory, sel: "bg-[#F3F4F6] text-[#374151] border-[#374151]", idle: "text-[#9CA3AF] border-[#D1D5DB] border-dashed" },
+} as const;
+
+const FACE_COLORS: Record<AssessmentStatus, { idle: string; sel: string }> = {
+  pari:         { idle: "#1CAB55", sel: "#fff" },
+  revise:       { idle: "#F59E0B", sel: "#fff" },
+  pari_na:      { idle: "#EF4444", sel: "#fff" },
+  syllabus_nai: { idle: "#9CA3AF", sel: "#374151" },
 };
 
-const statusLabels: Record<string, string> = {
-  revise:       "রিভাইজ দিলে পারব",
-  pari_na:      "একদম পারি না",
-  syllabus_nai: "সিলেবাসে নাই",
-};
+// ── Chapter importance stars ─────────────────────────────────────────────────
+
+function chapterImportance(ch: Chapter): number {
+  return Math.max(ch.mcq_importance, ch.sq_importance, ch.cq_importance);
+}
+
+// ── Main component ────────────────────────────────────────────────────────────
 
 export default function SubjectCard({
   subject, chapters, subjectStatus, chapterStatuses,
@@ -34,39 +88,115 @@ export default function SubjectCard({
 }: Props) {
   const [expanded, setExpanded] = useState(false);
 
-  const borderColor = subjectStatus ? (borderColors[subjectStatus] ?? "border-l-transparent") : "border-l-transparent";
+  const borderColor =
+    subjectStatus === "pari"         ? "border-l-[#1CAB55]" :
+    subjectStatus === "revise"       ? "border-l-[#F59E0B]" :
+    subjectStatus === "pari_na"      ? "border-l-[#E8001D]" :
+    subjectStatus === "syllabus_nai" ? "border-l-[#D1D5DB]" :
+    "border-l-transparent";
 
   return (
-    <div className={`bg-white rounded-2xl shadow-sm ring-1 ring-gray-200 overflow-hidden border-l-4 ${borderColor} transition-all duration-200 hover:shadow-md`}>
+    <div className={`bg-white rounded-[20px] border border-[#E5E7EB] overflow-hidden border-l-4 ${borderColor} transition-shadow hover:shadow-md`}>
       <div className="p-4">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-[14px] font-bold text-ten-ink">{subject}</span>
-          {subjectStatus && statusLabels[subjectStatus] && (
-            <span className="text-[11px] text-gray-400">{statusLabels[subjectStatus]}</span>
-          )}
+        {/* Subject name */}
+        <div className="flex items-start justify-between gap-2 mb-3">
+          <span className="text-[15px] font-semibold text-[#111827] leading-snug flex-1">{subject}</span>
+          <span className="text-[11px] text-gray-400 shrink-0">{toBanglaNum(chapters.length)} অধ্যায়</span>
         </div>
-        <div className="flex gap-2 flex-wrap">
-          <PillButton label="পারি" selected={subjectStatus === "pari"} variant="success"
-            onClick={() => onSubjectChange("pari")} />
-          <PillButton label="রিভাইজ দিলে পারব" selected={subjectStatus === "revise"} variant="warning"
-            onClick={() => onSubjectChange(subjectStatus === "revise" ? "pari" : "revise")} />
-          <PillButton label="একদম পারি না" selected={subjectStatus === "pari_na"} variant="error"
-            onClick={() => onSubjectChange(subjectStatus === "pari_na" ? "pari" : "pari_na")} />
-          <PillButton label="সিলেবাসে নাই" selected={subjectStatus === "syllabus_nai"} variant="gray"
-            onClick={() => onSubjectChange(subjectStatus === "syllabus_nai" ? "pari" : "syllabus_nai")} />
+
+        {/* Main status buttons */}
+        <div className="flex flex-wrap gap-2 mb-2">
+          {(["pari", "revise", "pari_na"] as const).map((s) => {
+            const cfg = STATUS_CONFIG[s];
+            const selected = subjectStatus === s;
+            const faceColor = selected ? FACE_COLORS[s].sel : FACE_COLORS[s].idle;
+            const FaceComp = cfg.face;
+            return (
+              <button
+                key={s}
+                type="button"
+                onClick={() => onSubjectChange(s)}
+                className={`flex items-center gap-1.5 px-3 py-[7px] rounded-full border-[1.5px] text-[12px] font-medium cursor-pointer transition-all duration-150 active:scale-95 ${selected ? cfg.sel : cfg.idle}`}
+              >
+                <FaceComp size={15} color={faceColor} />
+                <span>{cfg.label}</span>
+              </button>
+            );
+          })}
         </div>
-        <button type="button" onClick={() => setExpanded(!expanded)}
-          className="cursor-pointer mt-3 text-ten-red text-[13px] font-semibold hover:opacity-80 transition-opacity">
-          {expanded ? "অধ্যায়সমূহ Hide koro ▴" : `অধ্যায়সমূহ দেখো (${toBanglaNum(chapters.length)}) ▾`}
-        </button>
+
+        {/* Bottom row: syllabus nai + expand */}
+        <div className="flex items-center justify-between mt-1">
+          <button
+            type="button"
+            onClick={() => onSubjectChange("syllabus_nai")}
+            className={`flex items-center gap-1.5 px-3 py-[7px] rounded-full border-[1.5px] text-[12px] font-medium cursor-pointer transition-all duration-150 active:scale-95 ${subjectStatus === "syllabus_nai" ? STATUS_CONFIG.syllabus_nai.sel : STATUS_CONFIG.syllabus_nai.idle}`}
+          >
+            <FaceVictory size={14} color={subjectStatus === "syllabus_nai" ? "#374151" : "#9CA3AF"} />
+            <span>সিলেবাসেই নাই</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setExpanded(!expanded)}
+            className="flex items-center gap-1 text-[#E8001D] text-[12px] font-semibold cursor-pointer hover:opacity-75 transition-opacity"
+          >
+            <span>{expanded ? "অধ্যায়সমূহ Hide koro" : `অধ্যায়সমূহ দেখো (${toBanglaNum(chapters.length)})`}</span>
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transform: expanded ? "rotate(90deg)" : "none", transition: "transform 200ms" }}>
+              <polyline points="4 2 8 6 4 10"/>
+            </svg>
+          </button>
+        </div>
       </div>
+
+      {/* Expanded chapters */}
       {expanded && (
-        <div className="border-t border-gray-100 px-4 pb-3">
-          {chapters.map((ch) => (
-            <ChapterRow key={ch.id} chapter={ch}
-              status={chapterStatuses[String(ch.id)] || subjectStatus || "pari"}
-              onChange={(s) => onChapterChange(String(ch.id), s)} />
-          ))}
+        <div className="border-t border-dashed border-[#E5E7EB]">
+          {chapters.map((ch, idx) => {
+            const chId = String(ch.id);
+            const status: AssessmentStatus = chapterStatuses[chId] || subjectStatus || "pari";
+            const imp = chapterImportance(ch);
+            return (
+              <div key={ch.id} className={`px-4 py-3 ${idx < chapters.length - 1 ? "border-b border-[#F3F4F6]" : ""}`}>
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 rounded-full bg-[#F3F4F6] flex items-center justify-center text-[10px] font-semibold text-[#6B7280] shrink-0">
+                    {toBanglaNum(ch.chapter_num)}
+                  </div>
+                  <span className="flex-1 min-w-0 text-[13px] text-[#374151] leading-snug">{ch.chapter_name_bn}</span>
+                  {imp > 0 && <span className="text-[#F59E0B] text-[11px] shrink-0">{"★".repeat(imp)}</span>}
+                </div>
+                {/* Circular icon-only buttons for chapters */}
+                <div className="flex gap-2 pl-8">
+                  {(["pari", "revise", "pari_na", "syllabus_nai"] as const).map((s) => {
+                    const sel = status === s;
+                    const faceColor = sel ? FACE_COLORS[s].sel : FACE_COLORS[s].idle;
+                    const FaceComp = STATUS_CONFIG[s].face;
+                    const selBg =
+                      s === "pari"         ? "bg-[#1CAB55] border-[#0E7B4F] shadow-[0_2px_6px_rgba(28,171,85,.35)]" :
+                      s === "revise"       ? "bg-[#F59E0B] border-[#D97706] shadow-[0_2px_6px_rgba(245,158,11,.35)]" :
+                      s === "pari_na"      ? "bg-[#E8001D] border-[#B91C1C] shadow-[0_2px_6px_rgba(232,0,29,.3)]" :
+                      "bg-[#F3F4F6] border-[#6B7280]";
+                    const idleBg =
+                      s === "pari"         ? "bg-[#F0FDF4] border-[#D1FAE5]" :
+                      s === "revise"       ? "bg-[#FFFBEB] border-[#FEF3C7]" :
+                      s === "pari_na"      ? "bg-[#FFF5F5] border-[#FEE2E2]" :
+                      "bg-white border-dashed border-[#D1D5DB]";
+                    return (
+                      <button
+                        key={s}
+                        type="button"
+                        title={STATUS_CONFIG[s].label}
+                        onClick={() => onChapterChange(chId, s)}
+                        className={`w-[34px] h-[34px] rounded-full border-[1.5px] flex items-center justify-center cursor-pointer transition-all duration-150 active:scale-90 ${sel ? selBg : idleBg}`}
+                      >
+                        <FaceComp size={15} color={faceColor} />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

@@ -182,7 +182,7 @@ export default function RoutineTable({ days, staggered, dark }: Props) {
                             {"★".repeat(m.importance)}
                           </span>
                         )}
-                        <span className={`shrink-0 text-[10px] font-semibold px-1.5 py-0.5 rounded ${badgeClass(m.category, dark)}`}>
+                        <span className={`shrink-0 text-[10px] font-semibold px-1.5 py-0.5 rounded whitespace-nowrap ${badgeClass(m.category, dark)}`}>
                           {badgeLabel(m)}
                         </span>
                         <span className={`shrink-0 text-[11px] font-medium w-10 text-right ${dark ? "text-white/50" : "text-gray-400"}`}>

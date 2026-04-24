@@ -75,6 +75,7 @@ export default function CapturePage() {
         body: JSON.stringify({
           name: saved.name, grade: saved.grade,
           durationDays: saved.durationDays, routine: saved.routinePreview,
+          assessment: saved.assessment,
         }),
       });
       if (!genRes.ok) throw new Error("Generation failed");

@@ -1,10 +1,11 @@
-import type { RoutineDay, RoutineEntry } from "./types";
+import type { RoutineDay, RoutineEntry, Assessment, AssessmentStatus } from "./types";
 
 interface PrintProps {
   name: string;
   grade: string;
   durationDays: number;
   routine: RoutineDay[];
+  assessment?: Assessment;
   autoPrint?: boolean;
 }
 
@@ -123,16 +124,80 @@ function renderTaskRows(entries: RoutineEntry[]): string {
         ${m.chapterName}
         ${m.importance > 0 ? `<span style="color:#F59E0B;font-size:7pt;margin-left:3px">${"★".repeat(m.importance)}</span>` : ""}
       </td>
-      <td style="width:72px;text-align:center;padding:3px 3px;border-bottom:1px solid #F3F4F6">
-        <span style="font-size:6.5pt;font-weight:700;padding:1.5px 4px;border-radius:3px;display:inline-block;${categoryBadgeStyle(m.category)}">${badgeLabel(m)}</span>
+      <td style="text-align:center;padding:3px 4px;border-bottom:1px solid #F3F4F6;white-space:nowrap">
+        <span style="font-size:6.5pt;font-weight:700;padding:1.5px 5px;border-radius:3px;display:inline-block;white-space:nowrap;${categoryBadgeStyle(m.category)}">${badgeLabel(m)}</span>
       </td>
       <td style="width:24px;text-align:right;padding:3px 7px 3px 0;border-bottom:1px solid #F3F4F6;font-size:7pt;color:#9CA3AF">${fmtTime(m.totalTimeMin)}</td>
     </tr>`).join("")}
   `).join("");
 }
 
+// ── Self-diagnosis summary section ──────────────────────────────────────────
+
+function renderDiagnosis(assessment: Assessment): string {
+  const entries = Object.entries(assessment);
+  if (entries.length === 0) return "";
+
+  const statusLabel: Record<AssessmentStatus, string> = {
+    pari:         "পারি",
+    revise:       "রিভাইজ",
+    pari_na:      "পারিনা",
+    syllabus_nai: "সিলেবাসে নাই",
+  };
+  const statusColor: Record<AssessmentStatus, string> = {
+    pari:         "background:#ECFDF5;color:#065F46;border:1px solid #6EE7B7",
+    revise:       "background:#FFFBEB;color:#92400E;border:1px solid #FDE68A",
+    pari_na:      "background:#FEF2F2;color:#991B1B;border:1px solid #FCA5A5",
+    syllabus_nai: "background:#F3F4F6;color:#6B7280;border:1px dashed #D1D5DB",
+  };
+  // Face SVG paths (inline, single-color)
+  const faceSvg: Record<AssessmentStatus, string> = {
+    pari:         `<svg width="11" height="11" viewBox="0 0 16 16" fill="none" style="vertical-align:middle;margin-right:2px"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="5.5" cy="6.5" r=".8" fill="currentColor"/><circle cx="10.5" cy="6.5" r=".8" fill="currentColor"/><path d="M5 9.5 Q8 12.5 11 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    revise:       `<svg width="11" height="11" viewBox="0 0 16 16" fill="none" style="vertical-align:middle;margin-right:2px"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="5.5" cy="6.5" r=".8" fill="currentColor"/><circle cx="10.5" cy="6.5" r=".8" fill="currentColor"/><line x1="5.5" y1="10.5" x2="10.5" y2="10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    pari_na:      `<svg width="11" height="11" viewBox="0 0 16 16" fill="none" style="vertical-align:middle;margin-right:2px"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="5.5" cy="6.5" r=".8" fill="currentColor"/><circle cx="10.5" cy="6.5" r=".8" fill="currentColor"/><path d="M5 11.5 Q8 8.5 11 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    syllabus_nai: `<svg width="11" height="11" viewBox="0 0 16 16" fill="none" style="vertical-align:middle;margin-right:2px"><path d="M6 10V5.5a1 1 0 0 1 2 0V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 7.5V5a1 1 0 0 1 2 0V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 6.5a1 1 0 0 1 2 0V9c0 2-1.5 4-4 4S4 11 4 9V8a1 1 0 0 1 2 0v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  };
+
+  const rows = entries.map(([subject, chStatuses]) => {
+    const counts: Record<AssessmentStatus, number> = { pari: 0, revise: 0, pari_na: 0, syllabus_nai: 0 };
+    for (const s of Object.values(chStatuses)) counts[s as AssessmentStatus]++;
+    const total = Object.values(counts).reduce((a, b) => a + b, 0);
+
+    // Determine dominant status (all same → single pill; mixed → show counts)
+    const statuses = (["pari", "revise", "pari_na", "syllabus_nai"] as AssessmentStatus[])
+      .filter((s) => counts[s] > 0);
+    const allSame = statuses.length === 1;
+
+    const pills = statuses.map((s) =>
+      `<span style="display:inline-flex;align-items:center;font-size:6.5pt;font-weight:700;padding:2px 5px;border-radius:3px;${statusColor[s]}">${faceSvg[s]}${allSame ? statusLabel[s] : counts[s]}</span>`
+    ).join(" ");
+
+    return `
+    <div style="display:flex;align-items:center;gap:6px;padding:5px 8px;border:1px solid #E5E7EB;border-radius:8px;background:#fff">
+      <span style="flex:1;min-width:0;font-size:7.5pt;color:#111827;font-family:'Hind Siliguri',sans-serif;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${subject}</span>
+      <span style="font-size:6pt;color:#9CA3AF;flex-shrink:0">${total}</span>
+      <div style="display:flex;gap:3px;flex-shrink:0">${pills}</div>
+    </div>`;
+  }).join("");
+
+  return `
+  <div style="border:1.5px solid #E5E7EB;border-radius:10px;padding:10px 14px;margin-bottom:12px">
+    <div style="font-size:9pt;font-weight:700;color:#111827;margin-bottom:8px;display:flex;align-items:center;gap:6px">
+      <span style="display:inline-block;width:3px;height:14px;background:#931212;border-radius:2px"></span>
+      তোমার নিজস্ব মূল্যায়ন
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:8px;font-size:7pt;color:#6B7280">
+      <span style="display:flex;align-items:center;gap:3px">${faceSvg.pari} পারি</span>
+      <span style="display:flex;align-items:center;gap:3px">${faceSvg.revise} রিভাইজ দিলে পারবো</span>
+      <span style="display:flex;align-items:center;gap:3px">${faceSvg.pari_na} একদম পারিনা</span>
+      <span style="display:flex;align-items:center;gap:3px">${faceSvg.syllabus_nai} সিলেবাসে নাই</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">${rows}</div>
+  </div>`;
+}
+
 function renderCoverPage(props: PrintProps): string {
-  const { name, grade, durationDays, routine } = props;
+  const { name, grade, durationDays, routine, assessment } = props;
   const phases = [1, 2, 3] as const;
   const phaseNames: Record<number, string> = { 1: "ফাউন্ডেশন", 2: "প্র্যাকটিস", 3: "রিভিশন" };
 
@@ -217,6 +282,8 @@ function renderCoverPage(props: PrintProps): string {
       </div>
     </div>
 
+    ${assessment ? renderDiagnosis(assessment) : ""}
+
     <!-- Progress tracker -->
     <div style="border:1.5px solid #E5E7EB;border-radius:10px;padding:10px 14px">
       <div style="font-size:9pt;font-weight:700;color:#111827;margin-bottom:8px;display:flex;align-items:center;gap:6px">
@@ -264,7 +331,7 @@ function renderDayPages(routine: RoutineDay[], name: string, grade: string): str
       <div style="border:1.5px solid #E5E7EB;border-radius:8px;margin-bottom:7px;overflow:hidden;break-inside:avoid">
         <div style="background:${dayBg};display:flex;align-items:center;gap:8px;padding:6px 10px;border-bottom:1px solid #E5E7EB">
           <span style="font-size:10pt;font-weight:800;color:#111827;min-width:42px">Day ${day.dayNumber}</span>
-          <span style="font-size:7.5pt;color:#6B7280;display:flex;align-items:center;gap:5px">তারিখ: <span style="display:inline-block;width:28mm;border-bottom:1px solid #9CA3AF;height:14px"></span></span>
+          <span style="font-size:7.5pt;color:#6B7280;display:flex;align-items:center;gap:4px">তারিখ: <span style="display:inline-block;width:18mm;border-bottom:1px solid #9CA3AF;height:14px"></span></span>
           <div style="margin-left:auto;display:flex;align-items:center;gap:6px">
             <span style="font-size:8pt;font-weight:600;color:#4B5563">~${fmtTime(day.totalTimeMin)}</span>
             ${day.isExtreme ? `<span style="font-size:7pt;font-weight:700;padding:2px 6px;border-radius:3px;background:#FFF0F0;color:#931212;border:1px solid #FECACA">পাওয়ার ডে ⚡</span>` : ""}
@@ -299,11 +366,13 @@ export function generatePrintHtml(props: PrintProps): string {
 body{font-family:'Inter',sans-serif;font-size:9pt;color:#111827;background:#EEF2F4;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .page{width:210mm;min-height:auto;background:white;margin:8mm auto;padding:12mm 13mm 14mm;box-shadow:0 2px 20px rgba(0,0,0,.10)}
 .page-hd{display:flex;align-items:center;gap:10px;padding-bottom:8px;margin-bottom:12px;border-bottom:2.5px solid #931212}
+.days-2col{column-count:2;column-gap:8mm;column-fill:auto}
 @media print{
   @page{size:A4 portrait;margin:12mm 13mm}
   body{background:white}
   .page{margin:0;box-shadow:none;padding:0;break-after:page}
   .page:last-child{break-after:auto}
+  .days-2col{column-count:2;column-gap:8mm}
 }
 </style>
 </head>
@@ -315,7 +384,9 @@ ${renderCoverPage(props)}
     <div style="flex:1;text-align:center;font-size:10pt;font-weight:800;color:#111827">${grade} SMART ROUTINE</div>
     <div style="font-size:8pt;color:#4B5563;text-align:right"><strong>${name}</strong></div>
   </div>
-  ${renderDayPages(routine, name, grade)}
+  <div class="days-2col">
+    ${renderDayPages(routine, name, grade)}
+  </div>
   <div style="font-size:7pt;color:#9CA3AF;text-align:center;margin-top:10px;padding-top:8px;border-top:1px solid #E5E7EB">
     10 Minute School · ${grade} Smart Routine · 10minuteschool.com
   </div>

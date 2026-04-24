@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
   const pdfFilePath  = pdfPath(printId);
   const scriptPath   = path.join(process.cwd(), "scripts", "html_to_pdf.py");
 
-  execFile(PYTHON, [scriptPath, htmlFilePath, pdfFilePath], { timeout: 120_000 }, (err) => {
+  execFile(PYTHON, [scriptPath, htmlFilePath, pdfFilePath, process.cwd()], { timeout: 120_000 }, (err) => {
     if (err) { console.error("[print] PDF generation failed:", err.message); return; }
     markPdfReady(printId);
   });
